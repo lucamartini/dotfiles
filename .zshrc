@@ -60,7 +60,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-nvm npm sudo fast-syntax-highlighting zsh-autosuggestions zsh-completions fzf k tmux)
+plugins=(zsh-nvm npm sudo fast-syntax-highlighting zsh-autosuggestions zsh-completions fzf tmux)
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
@@ -77,7 +77,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # User configuration
 # PATH
 export PATH=$PATH:~/bin
-export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,12 +95,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
-source $(dirname $(gem which colorls))/tab_complete.sh
-
 alias ls="ls --color=always"
 alias ll="ls -htl"
-alias lc="colorls --long --almost-all --git-status --sort-dirs"
-alias ls="colorls --dark"
 
 alias vi="vim"
 alias vim="nvim"
