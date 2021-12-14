@@ -8,6 +8,7 @@ if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 fi
 
+zsh
 source $HOME/.zshrc
 
 if [[ ! -d "$NVM_DIR" ]]; then
