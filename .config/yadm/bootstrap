@@ -8,6 +8,8 @@ if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 fi
 
+source $HOME/.zshrc
+
 if [[ ! -d "$NVM_DIR" ]]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 fi
