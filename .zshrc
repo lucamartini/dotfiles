@@ -137,6 +137,6 @@ setopt hist_reduce_blanks
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-if [[ -r "$HOME/.nvm.sh" ]]; then
-  source "$HOME/.nvm.sh" 
+if [[ -r "$HOME/.config/nvm/.nvm.sh" ]]; then
+  source "$HOME/.config/nvm/nvm.sh" 
 fi
