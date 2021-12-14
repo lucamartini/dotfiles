@@ -1,0 +1,3 @@
+#! /bin/bash
+
+cp $HOME/.config/nvm/default-packages $HOME/.nvm/
