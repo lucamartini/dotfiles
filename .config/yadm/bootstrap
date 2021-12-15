@@ -12,4 +12,4 @@ fi
 if [[ ! -d "$HOME/.nvm" ]]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 fi
-cp $HOME/.config/nvm/default-packages $HOME/.nvm/
+cp $HOME/misc/default-packages $HOME/.nvm/
