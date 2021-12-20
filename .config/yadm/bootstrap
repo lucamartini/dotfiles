@@ -8,7 +8,6 @@ if [[ ! -d "$ZSH" ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 fi
- source ~/.zshrc
 
 if [[ ! -d "$HOME/.nvm" ]]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
