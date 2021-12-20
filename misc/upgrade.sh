@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function upgrade_lib () {
-  local GREEN=`tput setaf 2`
+  local GREEN=`tput setaf 2 bold`
   local YELLOW=`tput setaf 3 bold`
   local NOCOLOR=`tput sgr0`
 
@@ -9,9 +9,9 @@ function upgrade_lib () {
   cd $1
   for dir in */    
   do
-      dir=${dir%*/}
-    cd $dir
-    echo "upgrading $GREEN$dir$NOCOLOR"
+    local local_dir=${dir%*/}
+    cd $local_dir
+    echo "upgrading $GREEN$local_dir$NOCOLOR"
     git pull
     cd ..
   done
