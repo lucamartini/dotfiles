@@ -23,6 +23,7 @@ require('telescope').load_extension('fzf')
 local lsp = require "lspconfig"
 local coq = require "coq"
 lsp.bashls.setup(coq.lsp_ensure_capabilities())
+vim.cmd('COQnow -s')
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
