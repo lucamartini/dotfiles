@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
   ZSH_CUSTOM=~/.oh-my-zsh/custom
