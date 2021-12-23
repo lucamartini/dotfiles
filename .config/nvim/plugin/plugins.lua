@@ -47,10 +47,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {'ms-jpq/coq_nvim'}
-    use {'ms-jpq/coq.artifacts'}
-    use {'ms-jpq/coq.thirdparty'}
-
     if packer_bootstrap then
         require('packer').sync()
     end

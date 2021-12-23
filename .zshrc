@@ -76,7 +76,8 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # User configuration
 # PATH
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/.local/bin
+export NVM_AUTOLOAD=1
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,7 +100,7 @@ alias ls="ls --color=always"
 alias ll="ls -htl"
 
 alias vi="vim"
-alias vim="nvim"
+alias vim="lvim"
 alias top="top -o %CPU"
 alias diff="diff --color=always"
 alias npmc="npm run commit"
@@ -108,7 +109,7 @@ alias npmca="git add .; npm run commit"
 # shell is en
 export LANG=en_US.UTF-8
 export LANGUAGE=en.UTF-8
-export EDITOR=nvim
+export EDITOR=lvim
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
