@@ -1,10 +1,10 @@
 #!/bin/bash
 
-function upgrade_lib () {
-  local GREEN=`tput setaf 2 bold`
-  local YELLOW=`tput setaf 3 bold`
-  local NOCOLOR=`tput sgr0`
+GREEN=`tput setaf 2 bold`
+YELLOW=`tput setaf 3 bold`
+NOCOLOR=`tput sgr0`
 
+function upgrade_lib () {
   echo -e "going to $YELLOW$1$NOCOLOR"
   cd $1
   for dir in */    
@@ -22,6 +22,7 @@ upgrade_lib ~/.oh-my-zsh/custom/themes
 upgrade_lib ~/.tmux/plugins
 
 (
+  echo "upgrading$YELLOW nvm$NOCOLOR"
   cd "$NVM_DIR"
   git fetch --tags origin
   git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
