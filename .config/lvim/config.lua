@@ -51,6 +51,9 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 -- }
+lvim.builtin.which_key.setup.plugins.presets.motions = true
+lvim.builtin.which_key.setup.plugins.presets.operators = true
+lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -158,6 +161,10 @@ lvim.plugins = {
 }
 
 lvim.builtin.lualine.style = "default"
+-- vim.g["bufferline#icons"] = "both"
+-- vim.g.bufferline = {
+--   icons = true
+-- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
