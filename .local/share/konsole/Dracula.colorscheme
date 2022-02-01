@@ -92,5 +92,5 @@ Color=255,255,255
 Blur=false
 ColorRandomization=false
 Description=Dracula
-Opacity=1
-Wallpaper=
+Opacity=0.12
+Wallpaper=/home/lmartini/misc/wallpaperbetter.com_1920x1080.jpg
