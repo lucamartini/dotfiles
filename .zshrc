@@ -60,12 +60,15 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm nvm sudo fast-syntax-highlighting zsh-autosuggestions zsh-completions fzf tmux)
+plugins=(npm nvm sudo fast-syntax-highlighting zsh-autosuggestions fzf tmux)
+fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
+
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
 }
+
 
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
