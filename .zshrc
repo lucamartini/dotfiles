@@ -101,8 +101,6 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls="ls --color=always"
 alias ll="ls -htl"
-alias exa="exa --color=always --color-scale --time-style=long-iso"
-alias exal="exa -l --icons"
 
 # set EDITOR
 if [ -x "$(command -v lvim)" ];
