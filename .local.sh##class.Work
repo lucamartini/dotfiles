@@ -14,3 +14,4 @@ export FV=/home/lmartini/nwg/services/fv/fv/index.js
 export CONSULTINGS=/home/lmartini/nwg/services/consultings/consultings/index.js
 export PROPOSALS=/home/lmartini/nwg/services/proposals/proposals/index.js
 export INCENTIVES=/home/lmartini/nwg/services/incentives/incentives/index.js
+export ANTER=/home/lmartini/nwg/services/anter/anter/index.js
