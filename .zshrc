@@ -80,7 +80,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # User configuration
 # PATH
 export PATH=$PATH:~/bin:~/.local/bin
-export NVM_AUTOLOAD=1
+zstyle ':omz:plugins:nvm' autoload true
 
 source $ZSH/oh-my-zsh.sh
 
