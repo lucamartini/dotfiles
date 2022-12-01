@@ -11,6 +11,8 @@ vim.opt.shiftwidth = 2
 
 vim.opt.termguicolors = true
 
+vim.opt.wildmode = "longest:full,full"
+
 vim.cmd [[colorscheme dracula]]
 require('gitsigns').setup()
 require('lualine').setup{
