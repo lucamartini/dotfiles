@@ -4,3 +4,8 @@ npm-check
 serve
 diff-so-fancy
 neovim
+@aws-amplify/cli
+expo-cli
+@expo/ngrok
+sharp-cli
+eas-cli

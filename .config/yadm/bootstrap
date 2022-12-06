@@ -13,3 +13,8 @@ if [[ ! -d "$HOME/.nvm" ]]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 fi
 cp $HOME/misc/default-packages $HOME/.nvm/
+
+if command -v pip &> /dev/null
+then
+  pip install awscli
+fi
