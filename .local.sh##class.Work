@@ -18,3 +18,4 @@ export INCENTIVES=/home/lmartini/nwg/services/incentives/incentives/index.js
 export ANTER=/home/lmartini/nwg/services/anter/anter/index.js
 export LEADS=/home/lmartini/nwg/services/leads/leads/index.js
 export INFLUENCERS=/home/lmartini/nwg/services/influencers/influencers/index.js
+export ESOLVER=/home/lmartini/nwg/services/esolver/esolver/index.js
