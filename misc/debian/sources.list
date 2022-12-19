@@ -1,0 +1,21 @@
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS                    
+#------------------------------------------------------------------------------#
+
+###### Debian Main Repos
+deb http://deb.debian.org/debian/ unstable main contrib non-free
+deb-src http://deb.debian.org/debian/ unstable main contrib non-free
+
+#------------------------------------------------------------------------------#
+#                      UNOFFICIAL  REPOS                       
+#------------------------------------------------------------------------------#
+
+###### 3rd Party Binary Repos
+###Debian Multimedia
+deb [arch=amd64,i386] http://www.deb-multimedia.org sid main non-free
+
+###LLVM + Clang + compiler-rt + polly + LLDB + LLD + libFuzzer + libc++ + libc++abi + openmp
+deb http://apt.llvm.org/unstable/ llvm-toolchain main
+deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
+
+
