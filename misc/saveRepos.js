@@ -5,7 +5,9 @@ const { exec } = require("child_process");
 
 const cwd = process.cwd();
 const cloneRepo = 'cloneRepo.sh';
-fs.unlinkSync(cloneRepo)
+try {
+  fs.unlinkSync(cloneRepo)
+} catch (err) {}
 
 async function processLineByLine() {
   const fileStream = fs.createReadStream('./nwg.code-workspace');
