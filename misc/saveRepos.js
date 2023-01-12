@@ -4,7 +4,7 @@ const readline = require('readline');
 const { exec } = require("child_process");
 
 const cwd = process.cwd();
-const cloneRepo = 'cloneRepo.sh';
+const cloneRepo = 'cloneRepos.txt';
 try {
   fs.unlinkSync(cloneRepo)
 } catch (err) {}
@@ -33,7 +33,7 @@ async function processLineByLine() {
             return;
         }
         process.chdir(cwd);
-        fs.appendFileSync(cloneRepo, `git clone ${stdout.slice(0, -1)} ${projectDir}\n`);
+        fs.appendFileSync(cloneRepo, `mkdir -p ${projectDir} && git clone ${stdout.slice(0, -1)} ${projectDir}\n`);
       });
     }
   }
