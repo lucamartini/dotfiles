@@ -4,7 +4,7 @@ const readline = require('readline');
 const { exec } = require("child_process");
 
 const cwd = process.cwd();
-const cloneRepo = 'cloneRepos.txt';
+const cloneRepo = 'cloneRepos.sh';
 try {
   fs.unlinkSync(cloneRepo)
 } catch (err) {}
