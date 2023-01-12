@@ -19,3 +19,4 @@ export ANTER=/home/lmartini/nwg/services/anter/anter/index.js
 export LEADS=/home/lmartini/nwg/services/leads/leads/index.js
 export INFLUENCERS=/home/lmartini/nwg/services/influencers/influencers/index.js
 export ESOLVER=/home/lmartini/nwg/services/esolver/esolver/index.js
+export APP_EB=/home/lmartini/nwg/services/app_eb/app_eb/index.js
