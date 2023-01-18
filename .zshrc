@@ -60,7 +60,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm nvm sudo fast-syntax-highlighting zsh-autosuggestions fzf tmux)
+plugins=(npm nvm sudo fast-syntax-highlighting zsh-autosuggestions )
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
@@ -68,8 +68,6 @@ pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
 }
-
-
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
@@ -83,7 +81,12 @@ export PATH=$PATH:~/bin:~/.local/bin:~/go/bin
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export ZSH_TMUX_ITERM2=true
+
 source $ZSH/oh-my-zsh.sh
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -93,6 +96,8 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -146,4 +151,5 @@ setopt hist_reduce_blanks
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 
