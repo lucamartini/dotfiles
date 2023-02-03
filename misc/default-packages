@@ -1,5 +1,4 @@
 # $NVM_DIR/default-packages
 
 npm-check
-diff-so-fancy
 neovim
