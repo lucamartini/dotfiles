@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -78,6 +78,9 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # User configuration
 # PATH
 export PATH=$PATH:~/bin:~/.local/bin:~/go/bin
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
 
@@ -86,7 +89,6 @@ zstyle ':omz:plugins:nvm' autoload yes
 export ZSH_TMUX_ITERM2=true
 
 source $ZSH/oh-my-zsh.sh
-
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -139,9 +141,7 @@ export FZF_DEFAULT_COMMAND='rg --hidden --files'
 bindkey '^ ' autosuggest-execute
 
 # machine related config (e.g. WSL2 or Arch)
-if [ -f ~/.local.sh ]; then
-	source ~/.local.sh
-fi
+[ -f ~/.local.sh ] && source ~/.local.sh
 
 # history settings
 unsetopt share_history
@@ -151,5 +151,4 @@ setopt hist_reduce_blanks
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
