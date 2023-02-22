@@ -111,6 +111,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    amplify
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1666,6 +1667,24 @@
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='at '
+
+  function prompt_amplify() {
+    PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null)
+    ENV=$PROJECT_DIR/amplify/.config/local-env-info.json
+      if [ -f "$ENV" ]; then
+        output=$(grep <"$ENV" -o '"envName": "[^"]*' | grep -o '[^"]*$')
+        if [ "$output" = production ]; then
+          local state=PRODUCTION
+        else
+          local state=NOTPRODUCTION
+        fi
+        p10k segment -s $state -f 3 -i '󰸏'  -t ${output}
+      else
+        return
+      fi
+  }
+  POWERLEVEL9K_AMPLIFY_PRODUCTION_BACKGROUND=red
+  POWERLEVEL9K_AMPLIFY_BACKGROUND=16
 
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
