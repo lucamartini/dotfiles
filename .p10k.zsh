@@ -1692,17 +1692,17 @@
   function prompt_amplify() {
     PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null)
     ENV=$PROJECT_DIR/amplify/.config/local-env-info.json
-      if [ -f "$ENV" ]; then
-        output=$(grep <"$ENV" -o '"envName": "[^"]*' | grep -o '[^"]*$')
-        if [ "$output" = production ]; then
-          local state=PRODUCTION
-        else
-          local state=NOTPRODUCTION
-        fi
-        p10k segment -s $state -f 3 -i '󰸏'  -t ${output}
+    if [ -f "$ENV" ]; then
+      output=$(grep <"$ENV" -o '"envName": "[^"]*' | grep -o '[^"]*$')
+      if [ "$output" = production ]; then
+        local state=PRODUCTION
       else
-        return
+        local state=NOTPRODUCTION
       fi
+      p10k segment -s $state -f 3 -i '󰸏'  -t ${output}
+    else
+      return
+    fi
   }
   POWERLEVEL9K_AMPLIFY_PRODUCTION_BACKGROUND=red
   POWERLEVEL9K_AMPLIFY_BACKGROUND=16
