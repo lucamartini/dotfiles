@@ -76,17 +76,11 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
 # User configuration
-# PATH
-export PATH=$PATH:~/bin:~/.local/bin:~/go/bin
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
 
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export ZSH_TMUX_ITERM2=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,8 +93,6 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -110,33 +102,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 alias ls="ls --color=always"
 alias ll="ls -htl"
 
-# set EDITOR
-if [ -x "$(command -v lvim)" ];
-then
-  alias vi="lvim"
-  alias vim="lvim"
-  export EDITOR=lvim
-elif [ -x "$(command -v nvim)" ];
-then 
-  alias vi="nvim"
-  alias vim="nvim"
-  export EDITOR=nvim
-else
-  alias vi="vim"
-  export EDITOR=vim
-fi
-
 alias top="top -o %CPU"
 alias diff="diff --color=always"
 alias npmc="npm run commit"
-alias npmca="git add .; npm run commit"
-
-# shell is en
-export LANG=en_US.UTF-8
-export LANGUAGE=en.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export FZF_DEFAULT_COMMAND='rg --hidden --files'
+alias npmca="git add . && npm run commit"
 
 bindkey '^ ' autosuggest-execute
 
@@ -148,6 +117,9 @@ unsetopt share_history
 unsetopt autocd
 setopt incappendhistory
 setopt hist_reduce_blanks
+
+# remove duplicat entries from $PATH
+typeset -U PATH path
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
