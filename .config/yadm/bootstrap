@@ -35,6 +35,9 @@ if [ -f /etc/os-release ]; then
       sudo cp ~/misc/debian/locale.gen /etc/
       sudo locale-gen
     fi
+    if [ ! -f /etc/apt/sources.list.d/google-chrome.list ]; then
+      sudo cp ~/misc/debian/sources.list.d/google-chrome.list /etc/apt/sources.list.d/
+    fi
   fi
 fi
 
@@ -97,16 +100,24 @@ if [ "$system_type" = "Linux" ]; then
   if [[ ! -d "$fonts_dir" ]]; then
     mkdir -p "$fonts_dir"
   fi
+  run_fc_cache=0
   for font in "${fonts[@]}"; do
-    zip_file="${font}.zip"
-    download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
-    echo "Downloading $download_url"
-    wget "$download_url"
-    unzip "$zip_file" -d "$fonts_dir"
-    rm "$zip_file"
+    bookmark="${fonts_dir}/${font}_${version}.touch"
+    if [ ! -f "${bookmark}" ]; then
+      zip_file="${font}.zip"
+      download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
+      echo "Downloading $download_url"
+      wget "$download_url"
+      unzip "$zip_file" -d "$fonts_dir"
+      rm "$zip_file"
+      run_fc_cache=1
+      touch "${bookmark}"
+    fi
   done
-  find "$fonts_dir" -name '*Windows Compatible*' -delete
-  fc-cache -fv
+  if [ "$run_fc_cache" = 1 ]; then
+    find "$fonts_dir" -name '*Windows Compatible*' -delete
+    fc-cache -fv
+  fi
 fi
 
 # tmux
