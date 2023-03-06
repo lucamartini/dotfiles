@@ -109,9 +109,6 @@ alias npmca="git add . && npm run commit"
 
 bindkey '^ ' autosuggest-execute
 
-# machine related config (e.g. WSL2 or Arch)
-[ -f ~/.local.sh ] && source ~/.local.sh
-
 # history settings
 unsetopt share_history
 unsetopt autocd

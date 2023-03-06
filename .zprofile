@@ -33,6 +33,9 @@ export LANGUAGE=en.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# local class related config (e.g. work or home)
+[ -f ~/.local.sh ] && source ~/.local.sh
+
 # OS
 # export KERNEL_NAME=$(uname | tr '[:upper:]' '[:lower:]')
 # case $KERNEL_NAME in
