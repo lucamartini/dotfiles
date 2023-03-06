@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export ACCOUNTS=~/nwg/services/accounts/index.js
 export NEWS=~/nwg/services/news/index.js
 export ENERGY=~/nwg/services/energy/index.js
