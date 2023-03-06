@@ -1,5 +1,8 @@
 #!/bin/bash
 
+system_type=$(uname -s)
+
+red=$(tput setaf 1 bold)
 green=$(tput setaf 2 bold)
 yellow=$(tput setaf 3 bold)
 reset=$(tput sgr0)
@@ -15,6 +18,25 @@ function pull_repos() {
     cd ..
   done
 }
+
+if ! command -v zsh >/dev/null 2>&1; then
+  echo "${red}zsh shell not installed! Install it and switch to it with:${reset}"
+  echo 'chsh -s $(which zsh)'
+  echo "${red}and log out and in${reset}"
+  exit 1
+fi
+
+if [ -f /etc/os-release ]; then
+  ID_LIKE=$(grep -oP '(?<=^ID_LIKE=).+' /etc/os-release | tr -d '"')
+  if [ "$ID_LIKE" = 'debian' ]; then
+    if ! dpkg-query -W -f='${Status}' build-essential | grep "ok installed"; then sudo apt --yes install build-essential; fi
+    if [[ $(</etc/default/locale) != "LANG=en_US.UTF-8" ]]; then
+      sudo cp ~/misc/debian/locale /etc/default/
+      sudo cp ~/misc/debian/locale.gen /etc/
+      sudo locale-gen
+    fi
+  fi
+fi
 
 # oh-my-zsh
 if [[ ! -d "$ZSH" ]]; then
@@ -50,8 +72,42 @@ if ! command -v brew >/dev/null 2>&1; then
   echo "Installing ${yellow}homebrew{reset}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-echo "Updating ${green}homebrew bundle{reset}"
+echo "Updating ${green}homebrew bundle${reset}"
+if [ "$system_type" = "Darwin" ]; then
+  if command -v /opt/homebrew/bin/brew &>/dev/null; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+elif [ "$system_type" = "Linux" ]; then
+  if command -v /home/linuxbrew/.linuxbrew/bin/brew &>/dev/null; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+fi
 brew bundle install --global --verbose
+if [ "$ID_LIKE" = 'debian' ]; then
+  brew install gcc
+fi
+# fonts because no casks
+if [ "$system_type" = "Linux" ]; then
+  declare -a fonts=(
+    FiraCode
+    JetBrainsMono
+  )
+  version='2.3.3'
+  fonts_dir="${HOME}/.local/share/fonts"
+  if [[ ! -d "$fonts_dir" ]]; then
+    mkdir -p "$fonts_dir"
+  fi
+  for font in "${fonts[@]}"; do
+    zip_file="${font}.zip"
+    download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
+    echo "Downloading $download_url"
+    wget "$download_url"
+    unzip "$zip_file" -d "$fonts_dir"
+    rm "$zip_file"
+  done
+  find "$fonts_dir" -name '*Windows Compatible*' -delete
+  fc-cache -fv
+fi
 
 # tmux
 pull_repos ~/.tmux/plugins

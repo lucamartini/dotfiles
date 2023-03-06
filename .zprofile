@@ -1,5 +1,14 @@
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+system_type=$(uname -s)
+if [ "$system_type" = "Darwin" ]; then
+  if command -v /opt/homebrew/bin/brew &>/dev/null; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+elif [ "$system_type" = "Linux" ]; then
+  if command -v /home/linuxbrew/.linuxbrew/bin/brew &>/dev/null; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+fi
 
 # ########################
 # PATH                   #
