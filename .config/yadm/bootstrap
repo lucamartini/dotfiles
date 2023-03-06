@@ -4,7 +4,7 @@ green=$(tput setaf 2 bold)
 yellow=$(tput setaf 3 bold)
 reset=$(tput sgr0)
 
-function upgrade_lib() {
+function pull_repos() {
   echo -e "going to ${yellow}$1${reset}"
   cd "$1" || return
   for dir in */; do
@@ -26,8 +26,8 @@ if [[ ! -d "$ZSH" ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 else
-  upgrade_lib ~/.oh-my-zsh/custom/plugins
-  upgrade_lib ~/.oh-my-zsh/custom/themes
+  pull_repos ~/.oh-my-zsh/custom/plugins
+  pull_repos ~/.oh-my-zsh/custom/themes
 fi
 
 # nvm
@@ -54,7 +54,7 @@ echo "Updating ${green}homebrew bundle{reset}"
 brew bundle install --global --verbose
 
 # tmux
-upgrade_lib ~/.tmux/plugins
+pull_repos ~/.tmux/plugins
 
 # vim
 echo "upgrading ${green}vim${reset}"
