@@ -1,18 +1,16 @@
 #!/bin/bash
 
-system_type=$(uname -s)
-
-GREEN=$(tput setaf 2 bold)
-YELLOW=$(tput setaf 3 bold)
-NOCOLOR=$(tput sgr0)
+green=$(tput setaf 2 bold)
+yellow=$(tput setaf 3 bold)
+reset=$(tput sgr0)
 
 function upgrade_lib() {
-  echo -e "going to $YELLOW$1$NOCOLOR"
+  echo -e "going to ${yellow}$1${reset}"
   cd "$1" || return
   for dir in */; do
     local local_dir=${dir%*/}
     cd "$local_dir" || return
-    echo "upgrading $GREEN$local_dir$NOCOLOR"
+    echo "upgrading ${green}$local_dir${reset}"
     git pull
     cd ..
   done
@@ -20,6 +18,7 @@ function upgrade_lib() {
 
 # oh-my-zsh
 if [[ ! -d "$ZSH" ]]; then
+  echo "installing ${yellow}oh-my-zsh${reset}"
   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
   ZSH_CUSTOM=~/.oh-my-zsh/custom
   git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -34,11 +33,11 @@ fi
 # nvm
 NVM_DIR=$HOME/.nvm
 if [[ ! -d "$NVM_DIR" ]]; then
-  echo "installing$YELLOW nvm$NOCOLOR"
+  echo "installing ${yellow}nvm${reset}"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 else
   (
-    echo "upgrading$YELLOW nvm$NOCOLOR"
+    echo "upgrading ${green}nvm${reset}"
     cd "$NVM_DIR"
     git fetch --tags origin
     git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
@@ -48,15 +47,15 @@ cp "$HOME"/misc/default-packages "$HOME"/.nvm/
 
 # homebrew
 if ! command -v brew >/dev/null 2>&1; then
-  echo "Installing homebrew"
+  echo "Installing ${yellow}homebrew{reset}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-echo "Updating homebrew bundle"
+echo "Updating ${green}homebrew bundle{reset}"
 brew bundle install --global --verbose
 
 # tmux
 upgrade_lib ~/.tmux/plugins
 
 # vim
-echo "upgrading$YELLOW vim$NOCOLOR"
+echo "upgrading ${green}vim${reset}"
 nvim --headless "+Lazy! sync" +qa
