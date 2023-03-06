@@ -1,5 +1,24 @@
 #!/bin/bash
 
+system_type=$(uname -s)
+
+GREEN=$(tput setaf 2 bold)
+YELLOW=$(tput setaf 3 bold)
+NOCOLOR=$(tput sgr0)
+
+function upgrade_lib() {
+  echo -e "going to $YELLOW$1$NOCOLOR"
+  cd "$1" || return
+  for dir in */; do
+    local local_dir=${dir%*/}
+    cd "$local_dir" || return
+    echo "upgrading $GREEN$local_dir$NOCOLOR"
+    git pull
+    cd ..
+  done
+}
+
+# oh-my-zsh
 if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
   ZSH_CUSTOM=~/.oh-my-zsh/custom
@@ -7,18 +26,37 @@ if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
+else
+  upgrade_lib ~/.oh-my-zsh/custom/plugins
+  upgrade_lib ~/.oh-my-zsh/custom/themes
 fi
 
-if [[ ! -d "$HOME/.nvm" ]]; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+# nvm
+NVM_DIR=$HOME/.nvm
+if [[ ! -d "$NVM_DIR" ]]; then
+  echo "installing$YELLOW nvm$NOCOLOR"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+else
+  (
+    echo "upgrading$YELLOW nvm$NOCOLOR"
+    cd "$NVM_DIR"
+    git fetch --tags origin
+    git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
+  ) && \. "$NVM_DIR/nvm.sh"
 fi
-cp $HOME/misc/default-packages $HOME/.nvm/
+cp "$HOME"/misc/default-packages "$HOME"/.nvm/
 
-if [[ $OSTYPE == 'darwin'* ]]; then
+# homebrew
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+echo "Updating homebrew bundle"
+brew bundle install --global --verbose
 
-if command -v pip &> /dev/null
-then
-  pip install awscli
-fi
+# tmux
+upgrade_lib ~/.tmux/plugins
+
+# vim
+echo "upgrading$YELLOW vim$NOCOLOR"
+nvim --headless "+Lazy! sync" +qa
