@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
 
 # apps dev
@@ -24,3 +25,7 @@ brew "glab"
 brew "jesseduffield/lazygit/lazygit"
 
 brew "graphviz"
+
+# fonts
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
