@@ -43,6 +43,9 @@ return {
     config = function()
       require("which-key").setup {}
     end
+  },
+  {
+    "christoomey/vim-tmux-navigator"
   }
 }
 
