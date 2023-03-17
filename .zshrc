@@ -102,7 +102,6 @@ source $ZSH/oh-my-zsh.sh
 alias ls="ls --color=always"
 alias ll="ls -htl"
 
-alias top="top -o %CPU"
 alias diff="diff --color=always"
 alias npmc="npm run commit"
 alias npmca="git add . && npm run commit"
@@ -121,3 +120,4 @@ typeset -U PATH path
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+test -e /Users/lmartini/.iterm2_shell_integration.zsh && source /Users/lmartini/.iterm2_shell_integration.zsh || true
