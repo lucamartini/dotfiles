@@ -50,7 +50,6 @@ if [[ ! -d "$ZSH" ]]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
-  git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
 else
   pull_repos ~/.oh-my-zsh/custom/plugins
   pull_repos ~/.oh-my-zsh/custom/themes
