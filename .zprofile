@@ -19,8 +19,6 @@ export PATH=~/bin:$PATH
 export PATH=~/.amplify/bin:$PATH
 # Android
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
-# Python
-# export PATH=~/Library/Python/3.9/bin:$PATH # use brew one
 
 export ANDROID_HOME=~/Library/Android/sdk
 export ZSH_TMUX_ITERM2=true

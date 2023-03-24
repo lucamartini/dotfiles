@@ -7,6 +7,7 @@ tap "jesseduffield/lazygit"
 brew "fastlane"
 brew "php"
 brew "poppler"
+brew "curl"
 
 # shell
 brew "neovim"

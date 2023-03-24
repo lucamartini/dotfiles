@@ -7,7 +7,7 @@ def main():
     """the main function to print the missing bundles
     from the global .Brewfile"""
     home = Path.home()
-    brew_file = open(home / ".brew_file", "r", encoding="UTF-8")
+    brew_file = open(home / ".Brewfile", "r", encoding="UTF-8")
 
     current_brews_command = (
         "HOMEBREW_NO_AUTO_UPDATE=1 brew bundle dump --file=-"
