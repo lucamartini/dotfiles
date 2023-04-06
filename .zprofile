@@ -29,7 +29,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 if [ -x "$(command -v nvim)" ]; then
   alias vi="nvim"
   alias vim="nvim"
-  export EDITOR=nvim
+  export EDITOR=vim
 else
   alias vi="vim"
   export EDITOR=vim
