@@ -36,4 +36,4 @@ cask "iterm2"
 cask "visual-studio-code"
 cask "macpass"
 cask "karabiner-elements"
-cask "docker"
+
