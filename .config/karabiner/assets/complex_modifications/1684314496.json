@@ -1,8 +1,8 @@
 {
-  "title": "Panic Nova: Home and End",
+  "title": "Home and End",
   "rules": [
     {
-      "description": "Panic Nova: Allow Home and End to navigate along a line.",
+      "description": "Allow Home and End to navigate along a line.",
       "manipulators": [
         {
           "type": "basic",
@@ -18,14 +18,6 @@
             {
               "key_code": "left_arrow",
               "modifiers": "command"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.panic\\.Nova$"
-              ]
             }
           ]
         },
@@ -44,20 +36,12 @@
               "key_code": "right_arrow",
               "modifiers": "command"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.panic\\.Nova$"
-              ]
-            }
           ]
         }
       ]
     },
     {
-      "description": "Panic Nova: Allow Shift+Home and Shift+End to select text along a line.",
+      "description": "Allow Shift+Home and Shift+End to select text along a line.",
       "manipulators": [
         {
           "type": "basic",
@@ -81,14 +65,6 @@
                 "left_shift"
               ]
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.panic\\.Nova$"
-              ]
-            }
           ]
         },
         {
@@ -111,14 +87,6 @@
               "modifiers": [
                 "command",
                 "right_shift"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.panic\\.Nova$"
               ]
             }
           ]
