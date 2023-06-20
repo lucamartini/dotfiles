@@ -79,7 +79,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
-export NVM_DIR=/opt/homebrew/opt/nvm
+export NVM_DIR=$(brew --prefix nvm)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -122,3 +122,4 @@ typeset -U PATH path
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 test -e /Users/lmartini/.iterm2_shell_integration.zsh && source /Users/lmartini/.iterm2_shell_integration.zsh || true
+
