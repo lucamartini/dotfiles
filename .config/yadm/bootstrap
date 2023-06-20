@@ -55,21 +55,6 @@ else
   pull_repos ~/.oh-my-zsh/custom/themes
 fi
 
-# nvm
-NVM_DIR=$HOME/.nvm
-if [[ ! -d "$NVM_DIR" ]]; then
-  echo "installing ${yellow}nvm${reset}"
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-else
-  (
-    echo "upgrading ${green}nvm${reset}"
-    cd "$NVM_DIR"
-    git fetch --tags origin
-    git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
-  ) && \. "$NVM_DIR/nvm.sh"
-fi
-cp "$HOME"/misc/default-packages "$HOME"/.nvm/
-
 # homebrew
 if ! command -v brew >/dev/null 2>&1; then
   echo "Installing ${yellow}homebrew${reset}"
@@ -120,6 +105,8 @@ if [ "$system_type" = "Linux" ]; then
     fc-cache -fv
   fi
 fi
+# nvm
+cp "$HOME"/misc/default-packages $(brew --prefix nvm)/
 
 # tmux
 pull_repos ~/.tmux/plugins

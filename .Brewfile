@@ -5,6 +5,7 @@ tap "jesseduffield/lazygit"
 
 # apps dev
 brew "fastlane"
+brew "nvm"
 brew "php"
 brew "poppler"
 brew "curl"
@@ -22,7 +23,6 @@ brew "awscli"
 
 # git
 brew "git-delta"
-brew "git-filter-repo"
 brew "glab"
 brew "jesseduffield/lazygit/lazygit"
 
@@ -34,6 +34,4 @@ cask "font-jetbrains-mono-nerd-font"
 
 cask "iterm2"
 cask "visual-studio-code"
-cask "macpass"
 cask "karabiner-elements"
-cask "dbeaver-community"
