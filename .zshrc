@@ -79,7 +79,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
-export NVM_DIR=$(brew --prefix nvm)
+# export NVM_DIR=$(brew --prefix nvm) remvoe if not needed
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
