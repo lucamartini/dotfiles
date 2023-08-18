@@ -74,7 +74,7 @@ brew bundle install --global --verbose
 if [ "$ID_LIKE" = 'debian' ]; then
   brew install gcc
 fi
-brew upgrade
+brew upgrade --greedy
 # fonts because no casks
 if [ "$system_type" = "Linux" ]; then
   declare -a fonts=(
