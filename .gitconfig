@@ -10,6 +10,7 @@
 [push]
 	default = simple
 	followTags = true
+	autoSetupRemote = true
 [core]
 	editor = nvim
 	pager = delta
