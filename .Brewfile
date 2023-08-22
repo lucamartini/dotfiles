@@ -4,7 +4,6 @@ tap "jesseduffield/lazygit"
 
 # apps dev
 brew "fastlane"
-brew "nvm"
 brew "php"
 brew "poppler"
 brew "curl"

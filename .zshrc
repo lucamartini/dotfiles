@@ -77,7 +77,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # User configuration
 
-# zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload yes
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
