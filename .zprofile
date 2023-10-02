@@ -25,6 +25,10 @@ export ZSH_TMUX_ITERM2=true
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 # set EDITOR
 if [ -x "$(command -v nvim)" ]; then
   alias vi="nvim"

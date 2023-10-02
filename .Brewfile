@@ -7,7 +7,6 @@ brew "fastlane"
 brew "php"
 brew "poppler"
 brew "curl"
-brew "python@3.11"
 
 # shell
 brew "neovim"
