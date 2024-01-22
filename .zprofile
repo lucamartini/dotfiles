@@ -21,6 +21,7 @@ export PATH=~/.amplify/bin:$PATH
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
 
 export ANDROID_HOME=~/Library/Android/sdk
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 export ZSH_TMUX_ITERM2=true
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
