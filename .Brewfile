@@ -1,11 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-tap "jesseduffield/lazygit"
 
 # apps dev
-brew "fastlane"
-brew "php"
-brew "poppler"
 brew "curl"
 
 # shell
@@ -20,10 +16,6 @@ brew "awscli"
 
 # git
 brew "git-delta"
-brew "glab"
-brew "jesseduffield/lazygit/lazygit"
-
-brew "graphviz"
 
 # fonts
 cask "font-fira-code-nerd-font"
