@@ -56,3 +56,6 @@ export LC_ALL=en_US.UTF-8
 # 'darwin') ;;
 # *) ;;
 # esac
+
+# Created by `pipx` on 2024-02-14 08:46:05
+export PATH="$PATH:/Users/lmartini/.local/bin"
