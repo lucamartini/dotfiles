@@ -1,3 +1,5 @@
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zprofile.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zprofile.pre.zsh"
 # Set PATH, MANPATH, etc., for Homebrew.
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
@@ -59,3 +61,6 @@ export LC_ALL=en_US.UTF-8
 
 # Created by `pipx` on 2024-02-14 08:46:05
 export PATH="$PATH:/Users/lmartini/.local/bin"
+
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zprofile.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zprofile.post.zsh"
