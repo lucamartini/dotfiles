@@ -1,9 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
-# apps dev
-brew "curl"
-
 # shell
 brew "neovim"
 brew "tmux"
@@ -13,9 +10,18 @@ brew "fzf"
 brew "jq"
 brew "ripgrep"
 brew "awscli"
-
-# git
+brew "dust"
+brew "duf"
+brew "broot"
+brew "the_silver_searcher"
+brew "curl"
 brew "git-delta"
+brew "bottom"
+brew "hyperfine"
+brew "zoxide"
+brew "dog"
+brew "bat"
+brew "eza"
 
 # fonts
 cask "font-fira-code-nerd-font"

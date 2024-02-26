@@ -123,3 +123,5 @@ typeset -U PATH path
 
 test -e /Users/lmartini/.iterm2_shell_integration.zsh && source /Users/lmartini/.iterm2_shell_integration.zsh || true
 
+
+source /Users/lmartini/.config/broot/launcher/bash/br
