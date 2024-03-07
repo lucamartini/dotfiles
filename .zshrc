@@ -62,7 +62,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(npm nvm sudo fzf fast-syntax-highlighting zsh-autosuggestions aws pyenv)
+plugins=(npm nvm sudo fzf fast-syntax-highlighting zsh-autosuggestions colored-man-pages macos aws pyenv)
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
