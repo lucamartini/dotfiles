@@ -1047,8 +1047,8 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=0
-  typeset -g POWERLEVEL9K_PYENV_BACKGROUND=4
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=18
+  typeset -g POWERLEVEL9K_PYENV_BACKGROUND=226
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
   # If set to false, hide python version if it's the same as global:
@@ -1102,15 +1102,15 @@
 
   ##############[ nvm: node.js version from nvm (https://github.com/nvm-sh/nvm) ]###############
   # Nvm color.
-  typeset -g POWERLEVEL9K_NVM_FOREGROUND=0
-  typeset -g POWERLEVEL9K_NVM_BACKGROUND=5
+  typeset -g POWERLEVEL9K_NVM_FOREGROUND=15
+  typeset -g POWERLEVEL9K_NVM_BACKGROUND=22
   # If set to false, hide node version if it's the same as default:
   # $(nvm version current) == $(nvm version default).
   typeset -g POWERLEVEL9K_NVM_PROMPT_ALWAYS_SHOW=true
   # If set to false, hide node version if it's equal to "system".
   typeset -g POWERLEVEL9K_NVM_SHOW_SYSTEM=true
   # Custom icon.
-  # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='󰎙'
 
   ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
   # Nodeenv color.
