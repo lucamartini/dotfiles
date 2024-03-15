@@ -216,7 +216,7 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=93
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=26
   # Default current directory foreground color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=254
   # If directory is too long, shorten some of its segments to the shortest possible unique
@@ -414,7 +414,7 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show tag name in full without truncation, delete the next line.
       (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
-      res+="${meta}#${clean}${tag//\%/%%}"
+      res+="${clean}#${tag//\%/%%}"
     fi
 
     # Display the current Git commit if there is no branch and no tag.
