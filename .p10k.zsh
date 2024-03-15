@@ -1047,7 +1047,7 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=18
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=19
   typeset -g POWERLEVEL9K_PYENV_BACKGROUND=226
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
