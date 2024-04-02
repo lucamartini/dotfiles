@@ -7,7 +7,8 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 config.color_scheme = 'Dracula'
-config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
+config.font = wezterm.font('JetBrainsMono Nerd Font Propo')
+config.freetype_load_target = 'Light'
 config.font_size = 12.0
 config.window_close_confirmation = 'NeverPrompt'
 
@@ -31,9 +32,9 @@ config.keys = {
   {
     key = 'RightArrow',
     mods = 'OPT',
-    action = act.SendKey { 
-      key = 'f', 
-      mods = 'ALT' 
+    action = act.SendKey {
+      key = 'f',
+      mods = 'ALT'
     },
   },
 
