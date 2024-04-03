@@ -37,7 +37,6 @@ config.keys = {
       mods = 'ALT'
     },
   },
-
 }
 
 -- and finally, return the configuration to wezterm

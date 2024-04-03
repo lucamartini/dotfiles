@@ -28,5 +28,6 @@ cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 
 cask "iterm2"
+cask "wezterm"
 cask "visual-studio-code"
 cask "karabiner-elements"

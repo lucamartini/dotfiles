@@ -3,22 +3,21 @@ return {
     "dracula/vim",
     lazy = false,
     priority = 1000,
-    config = function ()
+    config = function()
       vim.cmd([[colorscheme dracula]])
     end,
   },
   {
-    "lewis6991/gitsigns.nvim", 
-    dependencies = {"nvim-lua/plenary.nvim"},
-    config = function() 
-      require('gitsigns').setup() 
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
     end
   },
   {
-    "nvim-lualine/lualine.nvim", 
-    dependencies = {"kyazdani42/nvim-web-devicons"},
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require('lualine').setup{
+      require('lualine').setup {
         options = {
           theme = 'dracula'
         }
@@ -26,26 +25,31 @@ return {
     end
   },
   {
-    "nvim-telescope/telescope.nvim", 
-    dependencies = {"nvim-lua/plenary.nvim"}
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
-    "nvim-treesitter/nvim-treesitter", 
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
-  "neovim/nvim-lspconfig",
+  { "neovim/nvim-lspconfig" },
   {
-    "nvim-telescope/telescope-fzf-native.nvim", 
+    "nvim-telescope/telescope-fzf-native.nvim",
     build = "make"
   },
   {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {}
-    end
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+    end,
+    opts = {}
   },
   {
-    "christoomey/vim-tmux-navigator"
-  }
+    'mrjones2014/legendary.nvim',
+    priority = 10000,
+    lazy = false,
+  },
+  { 'mrjones2014/smart-splits.nvim' }
 }
-
