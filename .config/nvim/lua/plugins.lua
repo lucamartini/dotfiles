@@ -29,6 +29,10 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
