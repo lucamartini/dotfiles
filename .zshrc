@@ -123,8 +123,6 @@ typeset -U PATH path
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-test -e /Users/lmartini/.iterm2_shell_integration.zsh && source /Users/lmartini/.iterm2_shell_integration.zsh || true
-
 
 source /Users/lmartini/.config/broot/launcher/bash/br
 
