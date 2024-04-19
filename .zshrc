@@ -99,9 +99,13 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-
-alias ls="ls --color=always"
-alias ll="ls -htl"
+if type eza > /dev/null; then
+  alias ls="eza --icons"
+  alias ll="eza --long --icons"
+else
+  alias ls="ls --color=always"
+  alias ll="ls -htl"
+fi
 
 alias diff="diff --color=always"
 alias nc="npm run commit"
