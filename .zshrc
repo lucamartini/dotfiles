@@ -119,14 +119,15 @@ unsetopt autocd
 setopt incappendhistory
 setopt hist_reduce_blanks
 
+# bindings
+bindkey "^T" transpose-chars
+
 # remove duplicat entries from $PATH
 typeset -U PATH path
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k_customizations.zsh ]] || source ~/.p10k_customizations.zsh
-
-source /Users/lmartini/.config/broot/launcher/bash/br
 
 # Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
