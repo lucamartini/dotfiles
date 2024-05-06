@@ -15,6 +15,8 @@ brew "curl"
 brew "git-delta"
 brew "bat"
 brew "eza"
+brew "tree"
+brew "tldr"
 
 # fonts
 cask "font-fira-code-nerd-font"

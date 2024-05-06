@@ -113,8 +113,6 @@ alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
 
-bindkey '^ ' autosuggest-execute
-
 # history settings
 unsetopt share_history
 unsetopt autocd
