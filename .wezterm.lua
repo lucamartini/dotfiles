@@ -37,6 +37,12 @@ config.keys = {
       mods = 'ALT'
     },
   },
+  -- disable decrease font size to rebind "undo"
+  {
+    key = '-',
+    mods = 'CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 -- and finally, return the configuration to wezterm
