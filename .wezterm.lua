@@ -11,6 +11,7 @@ config.font = wezterm.font('JetBrainsMono Nerd Font Propo')
 config.freetype_load_target = 'Light'
 config.font_size = 12.0
 config.window_close_confirmation = 'NeverPrompt'
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 local act = wezterm.action
 
