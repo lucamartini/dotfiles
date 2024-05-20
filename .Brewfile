@@ -1,5 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 
 # shell
 brew "neovim"
@@ -19,8 +18,8 @@ brew "tree"
 brew "tldr"
 
 # fonts
-cask "font-fira-code-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
+brew "font-fira-code-nerd-font"
+brew "font-jetbrains-mono-nerd-font"
 
 cask "iterm2"
 cask "wezterm"
