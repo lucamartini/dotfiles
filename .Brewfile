@@ -18,8 +18,8 @@ brew "tree"
 brew "tldr"
 
 # fonts
-brew "font-fira-code-nerd-font"
-brew "font-jetbrains-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
 
 cask "iterm2"
 cask "wezterm"
