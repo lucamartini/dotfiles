@@ -31,6 +31,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
+require('mini.icons').setup()
+
 require('legendary').setup({
   extensions = {
     -- to use default settings:

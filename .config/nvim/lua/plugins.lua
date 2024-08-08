@@ -41,19 +41,35 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make"
   },
+  { 'echasnovski/mini.icons', 
+    version = false 
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 500
-    end,
-    opts = {}
+    opts = {},
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
   },
   {
     'mrjones2014/legendary.nvim',
     priority = 10000,
     lazy = false,
   },
-  { 'mrjones2014/smart-splits.nvim' }
+  { 'mrjones2014/smart-splits.nvim' },
+  { 'RRethy/vim-illuminate' },
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
 }
