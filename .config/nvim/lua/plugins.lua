@@ -71,5 +71,7 @@ return {
     config = function ()
         require'alpha'.setup(require'alpha.themes.startify'.config)
     end
-  }
+  },
+  { 'levouh/tint.nvim' },
+  { 'petertriho/nvim-scrollbar' }
 }

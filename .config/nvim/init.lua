@@ -33,6 +33,10 @@ require("lazy").setup("plugins")
 
 require('mini.icons').setup()
 
+require("tint").setup()
+
+require("scrollbar").setup()
+
 require('legendary').setup({
   extensions = {
     -- to use default settings:
