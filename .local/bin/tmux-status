@@ -17,14 +17,14 @@
 #----------------------------------------------------------// vars
 FULL=━
 EMPTY=┄
-C0="#000000"
+C0="#282a36"
 C1="#222222"
 C2="#8FBCBB"
 C3="#B3291C"
-C4="#ff79c6" #"#685742"
-C5="#282a36" #"#d7c483"
-C6="#44475a" #"#C9A554"
-C7="#ffb86c" ##78824b"
+C4="#ffb86c"
+C5="#282a36"
+C6="#44475a"
+C7="#8be9fd"
 
 # Dracula Color Pallette
 white='#f8f8f2'
@@ -58,9 +58,9 @@ get_RAM() {
   Linux)
     usage="$(free -h | awk 'NR==2 {print $3}')"
     total="$(free -h | awk 'NR==2 {print $2}')"
-    formated="${usage}/${total}"
+    formatted="${usage}/${total}"
 
-    echo "${formated//i/B}"
+    echo "${formatted//i/B}"
     ;;
 
   Darwin)
@@ -76,30 +76,8 @@ get_RAM() {
     total_mem="$(sysctl -n hw.memsize)"
     total_mem_GB="$((total_mem / 1073741824))"
     used_mem_GB="$((used_mem / 1073741824))"
-    echo "${used_mem_GB}GB/${total_mem_GB}GB"
-    ;;
-
-  FreeBSD)
-    # Looked at the code from neofetch
-    hw_pagesize="$(sysctl -n hw.pagesize)"
-    mem_inactive="$(($(sysctl -n vm.stats.vm.v_inactive_count) * hw_pagesize))"
-    mem_unused="$(($(sysctl -n vm.stats.vm.v_free_count) * hw_pagesize))"
-    mem_cache="$(($(sysctl -n vm.stats.vm.v_cache_count) * hw_pagesize))"
-
-    free_mem=$(((mem_inactive + mem_unused + mem_cache) / 1024 / 1024))
-    total_mem=$(($(sysctl -n hw.physmem) / 1024 / 1024))
-    used_mem=$((total_mem - free_mem))
-    echo $used_mem
-    if ((used_mem < 1024)); then
-      echo "${used_mem}MB/$total_mem"
-    else
-      memory=$((used_mem / 1024))
-      echo "${memory}GB/$total_mem"
-    fi
-    ;;
-
-  CYGWIN* | MINGW32* | MSYS* | MINGW*)
-    # TODO - windows compatability
+    ratio=$((used_mem_GB * 100 / total_mem_GB))
+    echo "${used_mem_GB}GB/${total_mem_GB}GB $(draw $ratio 10)"
     ;;
   esac
 }
@@ -107,12 +85,12 @@ get_RAM() {
 normalize_percent_len() {
   # the max length that the percent can reach, which happens for a two digit number with a decimal house: "99.9%"
   max_len=5
-  percent_len=${#1}
+  percent_len=${#1}+1
   diff_len=$((max_len - percent_len))
   # if the diff_len is even, left will have 1 more space than right
   left_spaces=$(((diff_len + 1) / 2))
   right_spaces=$((diff_len / 2))
-  printf "%${left_spaces}s%s%${right_spaces}s\n" "" "$1" ""
+  printf "%${left_spaces}s%s%${right_spaces}s" "" "$1%" "" "$(draw "$1" 10)"
 }
 #-----------------------------------------------------// CPU
 get_CPU() {
@@ -126,12 +104,7 @@ get_CPU() {
     cpuvalue=$(ps -A -o %cpu | awk -F. '{s+=$1} END {print s}')
     cpucores=$(sysctl -n hw.logicalcpu)
     cpuusage=$((cpuvalue / cpucores))
-    percent="$cpuusage%"
-    normalize_percent_len $percent
-    ;;
-
-  CYGWIN* | MINGW32* | MSYS* | MINGW*)
-    # TODO - windows compatability
+    normalize_percent_len $cpuusage
     ;;
   esac
 }
@@ -163,9 +136,6 @@ download_bytes() {
   Darwin)
     netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $7}'
     ;;
-  CYGWIN* | MINGW32* | MSYS* | MINGW*)
-    # TODO - windows compatibility
-    ;;
   esac
 }
 
@@ -176,9 +146,6 @@ upload_bytes() {
     ;;
   Darwin)
     netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $10}'
-    ;;
-  CYGWIN* | MINGW32* | MSYS* | MINGW*)
-    # TODO - windows compatibility
     ;;
   esac
 }
@@ -208,8 +175,8 @@ FRONT="#[bg=$C7]#[fg=0]▓▒░"
 RAM=$(get_RAM)
 CPU=$(get_CPU)
 SYS=$({
-  printf "#[fg=%s]󰍛%s " "$C0" "${CPU}"
-  printf "#[fg=%s] %s " "$C0" "${RAM}"
+  printf "#[fg=%s]CPU %s " "$C0" "${CPU}"
+  printf "#[fg=%s]RAM %s " "$C0" "${RAM}"
 })
 NETWORK=$(get_network)
 TIME=$({
