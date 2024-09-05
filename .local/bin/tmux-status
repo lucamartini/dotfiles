@@ -8,12 +8,11 @@
 #   ░░██  ███ ░██ ░██░░██████ ██ ░░██
 #    ░░  ░░░  ░░  ░░  ░░░░░░ ░░   ░░
 #
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.style>
-# ░▓ code   ▓ https://code.x-e.ro/dotfiles
-# ░▓ mirror ▓ https://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
+#  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+# ░▓ author       ▓ luca
+# ░▓ adapted from ▓ https://code.x-e.ro/dotfiles
+# ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░░░░░░░
 #
 #----------------------------------------------------------// vars
 FULL=━
@@ -22,11 +21,24 @@ C0="#000000"
 C1="#222222"
 C2="#8FBCBB"
 C3="#B3291C"
-C4="#685742"
-C5="#d7c483"
-C6="#C9A554"
-C7="#78824b"
-network_name=en0
+C4="#ff79c6" #"#685742"
+C5="#282a36" #"#d7c483"
+C6="#44475a" #"#C9A554"
+C7="#ffb86c" ##78824b"
+
+# Dracula Color Pallette
+white='#f8f8f2'
+gray='#44475a'
+dark_gray='#282a36'
+light_purple='#bd93f9'
+dark_purple='#6272a4'
+cyan='#8be9fd'
+green='#50fa7b'
+orange='#ffb86c'
+red='#ff5555'
+pink='#ff79c6'
+yellow='#f1fa8c'
+NETWORK_NAME=en0
 #--------------------------------------------------// progress bar
 draw() {
   perc=$1
@@ -146,10 +158,10 @@ set_tmux_option() {
 download_bytes() {
   case $(uname -s) in
   Linux)
-    cat "/sys/class/net/$network_name/statistics/rx_bytes"
+    cat "/sys/class/net/$NETWORK_NAME/statistics/rx_bytes"
     ;;
   Darwin)
-    netstat -I "$network_name" -b | tail -n 1 | awk '{print $7}'
+    netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $7}'
     ;;
   CYGWIN* | MINGW32* | MSYS* | MINGW*)
     # TODO - windows compatibility
@@ -160,10 +172,10 @@ download_bytes() {
 upload_bytes() {
   case $(uname -s) in
   Linux)
-    cat "/sys/class/net/$network_name/statistics/rx_bytes"
+    cat "/sys/class/net/$NETWORK_NAME/statistics/rx_bytes"
     ;;
   Darwin)
-    netstat -I "$network_name" -b | tail -n 1 | awk '{print $10}'
+    netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $10}'
     ;;
   CYGWIN* | MINGW32* | MSYS* | MINGW*)
     # TODO - windows compatibility
