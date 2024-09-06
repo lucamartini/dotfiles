@@ -1,6 +1,6 @@
 return {
   {
-    "dracula/vim",
+    "Mofiqul/dracula.nvim",
     lazy = false,
     priority = 1000,
     config = function()
@@ -19,7 +19,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'dracula'
+          theme = 'dracula-nvim'
         }
       }
     end
