@@ -41,3 +41,5 @@ require('legendary').setup({
     smart_splits = {},
   },
 })
+
+require("mason").setup()
