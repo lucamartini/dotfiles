@@ -74,7 +74,7 @@ brew bundle install --global --verbose
 brew upgrade --greedy
 
 #install wezterm
-which wezterm || brew install --cask wezterm@nightly
+which wezterm > /dev/null || brew install --cask wezterm@nightly
 brew upgrade --cask wezterm@nightly --no-quarantine --greedy-latest
 
 # fonts because no casks
