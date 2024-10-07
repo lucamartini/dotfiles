@@ -17,27 +17,15 @@
 #----------------------------------------------------------// vars
 FULL=━
 EMPTY=┄
-C0="#282a36"
-C1="#222222"
-C2="#8FBCBB"
-C3="#B3291C"
-C4="#ffb86c"
-C5="#282a36"
-C6="#44475a"
-C7="#8be9fd"
+Black=0
+Red=1
+Green=2
+Orange=3
+Blue=4
+Purple=5
+Cyan=6
+White=7
 
-# Dracula Color Pallette
-white='#f8f8f2'
-gray='#44475a'
-dark_gray='#282a36'
-light_purple='#bd93f9'
-dark_purple='#6272a4'
-cyan='#8be9fd'
-green='#50fa7b'
-orange='#ffb86c'
-red='#ff5555'
-pink='#ff79c6'
-yellow='#f1fa8c'
 NETWORK_NAME=en0
 #--------------------------------------------------// progress bar
 draw() {
@@ -47,8 +35,8 @@ draw() {
   out=
   for v in $(seq 0 $((size - 1))); do
     [[ "$v" -le "$inc" ]] &&
-      out="${out}#[fg=$C1]${FULL}" ||
-      out="${out}#[fg=$C6]${EMPTY}"
+      out="${out}#[fg=$Black]${FULL}" ||
+      out="${out}#[fg=$Black]${EMPTY}"
   done
   printf "%s" "$out"
 }
@@ -171,20 +159,20 @@ get_network() {
 
 }
 #-------------------------------------------------------// compute
-FRONT="#[bg=$C7]#[fg=0]▓▒░"
+FRONT="#[bg=$Blue]#[fg=$Black]▓▒░"
 RAM=$(get_RAM)
 CPU=$(get_CPU)
 SYS=$({
-  printf "#[fg=%s]CPU %s " "$C0" "${CPU}"
-  printf "#[fg=%s]RAM %s " "$C0" "${RAM}"
+  printf "#[fg=%s]CPU %s " "$Black" "${CPU}"
+  printf "#[fg=%s]RAM %s " "$Black" "${RAM}"
 })
 NETWORK=$(get_network)
 TIME=$({
   printf "#[bg=%s]#[fg=%s]░▒#[bg=%s]#[fg=%s]▓\
-		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=0]#[fg=%s]▒░" \
-    "$C7" "$C4" "$C7" "$C4" "$C5" "$C4" \
-    "$(date +'%H:%M')" "$C5" "$(date +'%d/')" \
-    "$C6" "$(date +'%m/%Y')" "$C4"
+		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=$Black]#[fg=%s]▒░" \
+    "$Blue" "$Green" "$Blue" "$Green" "$Black" "$Green" \
+    "$(date +'%H:%M')" "$Black" "$(date +'%d/')" \
+    "$Black" "$(date +'%m/%Y')" "$Green"
 })
 #--------------------------------------------------------// render
 printf "%s %s %s %s" "$FRONT" "$SYS" "$NETWORK" "$TIME"

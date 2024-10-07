@@ -1,10 +1,11 @@
 return {
   {
-    "Mofiqul/dracula.nvim",
+    "neanias/everforest-nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme dracula]])
+      require("everforest").setup({background = "hard"})
+      vim.cmd([[colorscheme everforest]])
     end,
   },
   {
@@ -19,7 +20,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'dracula-nvim'
+          theme = 'auto'
         }
       }
     end
