@@ -169,10 +169,10 @@ SYS=$({
 NETWORK=$(get_network)
 TIME=$({
   printf "#[bg=%s]#[fg=%s]░▒#[bg=%s]#[fg=%s]▓\
-		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=$Black]#[fg=%s]▒░" \
+		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=%s]#[fg=%s]▒░" \
     "$Blue" "$Green" "$Blue" "$Green" "$Black" "$Green" \
     "$(date +'%H:%M')" "$Black" "$(date +'%d/')" \
-    "$Black" "$(date +'%m/%Y')" "$Green"
+    "$Black" "$(date +'%m/%Y')" "$Black" "$Green"
 })
 #--------------------------------------------------------// render
 printf "%s %s %s %s" "$FRONT" "$SYS" "$NETWORK" "$TIME"
