@@ -73,37 +73,6 @@ fi
 brew bundle install --global --verbose
 brew upgrade --greedy
 
-# fonts because no casks
-if [ "$system_type" = "Linux" ]; then
-  declare -a fonts=(
-    FiraCode
-    JetBrainsMono
-  )
-  version='2.3.3'
-  fonts_dir="${HOME}/.local/share/fonts"
-  if [[ ! -d "$fonts_dir" ]]; then
-    mkdir -p "$fonts_dir"
-  fi
-  run_fc_cache=0
-  for font in "${fonts[@]}"; do
-    bookmark="${fonts_dir}/${font}_${version}.touch"
-    if [ ! -f "${bookmark}" ]; then
-      zip_file="${font}.zip"
-      download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
-      echo "Downloading $download_url"
-      wget "$download_url"
-      unzip "$zip_file" -d "$fonts_dir"
-      rm "$zip_file"
-      run_fc_cache=1
-      touch "${bookmark}"
-    fi
-  done
-  if [ "$run_fc_cache" = 1 ]; then
-    find "$fonts_dir" -name '*Windows Compatible*' -delete
-    fc-cache -fv
-  fi
-fi
-
 # nvm
 echo "Updating ${green}nvm${reset}"
 if [ ! -d "$HOME/.nvm" ]; then
@@ -124,12 +93,3 @@ pull_repos ~/.tmux/plugins
 echo "upgrading ${green}vim${reset}"
 nvim --headless "+Lazy! sync" +qa
 
-# set OSX config
-if [ "$system_type" = "Darwin" ]; then
-  defaults write com.apple.dock autohide-delay -float 0.05
-  defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
-  defaults write com.apple.finder "AppleShowAllFiles" -bool "True"
-  defaults write com.apple.finder "ShowPathbar" -bool "true"
-  defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
-  defaults write -g NSWindowShouldDragOnGesture YES
-fi
