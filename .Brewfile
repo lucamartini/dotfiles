@@ -4,7 +4,6 @@ tap "homebrew/bundle"
 brew "awscli"
 brew "curl"
 brew "git-delta"
-brew "eza"
 brew "tree"
 brew "tldr"
 
