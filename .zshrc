@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 if type eza > /dev/null; then
-  alias ls="eza --icons"
-  alias ll="eza --long --icons"
+  alias ls="eza --icons=auto"
+  alias ll="eza --long --icons=auto"
 else
   alias ls="ls --color=always"
   alias ll="ls -htl"
