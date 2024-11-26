@@ -26,21 +26,6 @@ if ! command -v zsh >/dev/null 2>&1; then
   exit 1
 fi
 
-if [ -f /etc/os-release ]; then
-  ID_LIKE=$(grep -oP '(?<=^ID_LIKE=).+' /etc/os-release | tr -d '"')
-  if [ "$ID_LIKE" = 'debian' ]; then
-    if ! dpkg-query -W -f='${Status}' build-essential | grep "ok installed"; then sudo apt --yes install build-essential; fi
-    if [[ $(</etc/default/locale) != "LANG=en_US.UTF-8" ]]; then
-      sudo cp ~/misc/debian/locale /etc/default/
-      sudo cp ~/misc/debian/locale.gen /etc/
-      sudo locale-gen
-    fi
-    if [ ! -f /etc/apt/sources.list.d/google-chrome.list ]; then
-      sudo cp ~/misc/debian/sources.list.d/google-chrome.list /etc/apt/sources.list.d/
-    fi
-  fi
-fi
-
 # oh-my-zsh
 if [[ ! -d "$ZSH" ]]; then
   echo "installing ${yellow}oh-my-zsh${reset}"
