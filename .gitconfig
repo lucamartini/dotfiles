@@ -1,5 +1,7 @@
-[include]
-  path = .gitconfig.local
+[user]
+  name = Martini Luca
+  email = l.martini@nwgenergia.it
+  github = lucamartini
 [color]
 	ui = true
 	status = auto
