@@ -113,6 +113,12 @@ alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
 
+LFCD="$HOME/.config/lf/lfcd.sh"
+if [ -f "$LFCD" ]; then
+    source "$LFCD"
+fi
+bindkey -s '^o' 'lfcd\n'
+
 # history settings
 unsetopt share_history
 unsetopt autocd
