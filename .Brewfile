@@ -11,7 +11,6 @@ brew "ripgrep"
 brew "the_silver_searcher"
 brew "curl"
 brew "git-delta"
-brew "bat"
 brew "eza"
 brew "tree"
 
