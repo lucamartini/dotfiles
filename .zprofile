@@ -15,18 +15,13 @@ fi
 # ########################
 # PATH                   #
 # ########################
-# HOME
-export PATH=~/bin:$PATH
 # Amplify
 export PATH=~/.amplify/bin:$PATH
 # Android
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
-
 export ANDROID_HOME=~/Library/Android/sdk
 export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-export ZSH_TMUX_ITERM2=true
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
@@ -59,8 +54,7 @@ export LC_ALL=en_US.UTF-8
 # *) ;;
 # esac
 
-# Created by `pipx` on 2024-02-14 08:46:05
-export PATH="$PATH:/Users/lmartini/.local/bin"
+export PATH="$PATH:~/.local/bin"
 
 # Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh"
