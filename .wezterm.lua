@@ -6,10 +6,10 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
--- config.color_scheme = 'Dracula'
 config.color_scheme = 'Everforest Dark (Gogh)'
--- config.color_scheme = 'Dracula (Gogh)'
+-- config.color_scheme = 'Catppuccin Macchiato (Gogh)'
 -- config.color_scheme = 'Dracula (Official)'
+
 -- config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.font = wezterm.font('FiraCode Nerd Font')
 config.freetype_load_target = 'Light'
