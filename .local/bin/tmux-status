@@ -153,7 +153,7 @@ get_network() {
   download_kbps=$(echo "scale=0; $download_bps/1024" | bc)
   upload_kbps=$(echo "scale=0; $upload_bps/1024" | bc)
 
-  printf "%6s kB/s ↓ • %6s kB/s ↑" "$download_kbps" "$upload_kbps"
+  printf "%6s kB/s ↓ %6s kB/s ↑" "$download_kbps" "$upload_kbps"
   set_tmux_option "@prev-down-b" "$current_download_b"
   set_tmux_option "@prev-up-b" "$current_upload_b"
 
@@ -168,11 +168,10 @@ SYS=$({
 })
 NETWORK=$(get_network)
 TIME=$({
-  printf "#[bg=%s]#[fg=%s]░▒#[bg=%s]#[fg=%s]▓\
-		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=%s]#[fg=%s]▒░" \
-    "$Blue" "$Green" "$Blue" "$Green" "$Black" "$Green" \
-    "$(date +'%H:%M')" "$Black" "$(date +'%d/')" \
-    "$Black" "$(date +'%m/%Y')" "$Black" "$Green"
+  printf "#[bg=%s]#[fg=%s]░▒▓#[fg=%s]#[bg=%s] %s %s #[bg=%s]#[fg=%s]▒░" \
+    "$Blue" "$Green" \
+    "$Black" "$Green" "$(date +'%H:%M')" \
+    "$(date +'%d/%m/%Y')" "$Black" "$Green"
 })
 #--------------------------------------------------------// render
 printf "%s %s %s %s" "$FRONT" "$SYS" "$NETWORK" "$TIME"
