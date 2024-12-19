@@ -1,18 +1,14 @@
 return {
   {
-    "neanias/everforest-nvim",
+    -- "neanias/everforest-nvim",
+    "Mofiqul/dracula.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("everforest").setup({background = "hard"})
-      vim.cmd([[colorscheme everforest]])
+      -- require("everforest").setup({background = "hard"})
+      -- vim.cmd([[colorscheme everforest]])
+      vim.cmd([[colorscheme dracula]])
     end,
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require('gitsigns').setup()
-    end
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -23,6 +19,12 @@ return {
           theme = 'auto'
         }
       }
+    end
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
     end
   },
   {
