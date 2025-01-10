@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# avoid nested tmux
+
+if [ -z $TMUX ]; then
+  exec tmux
+else
+  echo "do not start nested tmux"
+fi

@@ -113,6 +113,8 @@ alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
 
+alias tmux="~/.local/bin/tmux"
+
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
     source "$LFCD"

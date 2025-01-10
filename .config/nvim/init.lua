@@ -15,7 +15,7 @@ vim.opt.wildmode = "longest:full,full"
 
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
-vim.g.python3_host_prog = '/Users/lmartini/.pyenv/shims/python3'
+-- vim.g.python3_host_prog = '/Users/lmartini/.pyenv/shims/python3'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
