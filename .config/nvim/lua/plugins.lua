@@ -133,5 +133,9 @@ return {
       alpha.setup(dashboard.opts)
     end
   },
-  { 'levouh/tint.nvim' }
+  { 'levouh/tint.nvim' },
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {}
+  }
 }
