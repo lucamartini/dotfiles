@@ -10,7 +10,6 @@ local config = wezterm.config_builder()
 -- config.color_scheme = 'Catppuccin Macchiato (Gogh)'
 config.color_scheme = 'Dracula (Official)'
 
--- config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.font = wezterm.font('FiraCode Nerd Font')
 config.freetype_load_target = 'Light'
 config.font_size = 12.0
