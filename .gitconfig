@@ -17,6 +17,7 @@
 	editor = nvim
 	pager = delta
 	excludesFile = ~/.gitignore
+  ignoreCase = false
 [credential]
 	helper = cache --timeout 21600
 	credentialStore = cache
