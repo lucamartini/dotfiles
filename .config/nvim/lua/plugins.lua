@@ -17,7 +17,59 @@ return {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      --     -- dashboard = { enabled = true },
+      dashboard = {
+        enabled = true,
+        preset = {
+          keys = {
+            { icon = " ", key = "e", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = "󰊳 ", key = "<Leader>u", desc = "Update", action = ":Lazy update" },
+            { icon = "󱊍 ", key = "<Leader>m", desc = "Mason", action = ":Mason" },
+            { icon = "󰋠 ", key = "<Leader>c", desc = "Check Health", action = ":checkhealth" },
+            { icon = " ", key = "<Leader>i", desc = "Init", action = ":e ~/.config/nvim/init.lua" },
+            { icon = " ", key = "<Leader>p", desc = "Lazy Plugins", action = ":e ~/.config/nvim/lua/plugins.lua" },
+            { icon = "󰿅 ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          header = [[
+=================     ===============     ===============   ========  ========
+\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //
+||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||
+|| . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||
+||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||
+|| . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||
+||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||
+|| . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||
+||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||
+||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||
+||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||
+||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||
+||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||
+||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||
+||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||
+||.=='    _-'                                                     `' |  /==.||
+=='    _-'                        N E O V I M                         \/   `==
+\   _-'                                                                `-_   /
+ `''                                                                      ``' ]],
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys",   gap = 1, padding = 1 },
+          { section = "startup" },
+          function()
+            local version = vim.version()
+            local nvim_version_info = "v" .. version.major .. "." .. version.minor .. "." .. version.patch
+            return {
+              text = {
+                { nvim_version_info, hl = "SnacksDashboardDesc", align = "center" },
+              },
+            }
+          end
+
+
+        }
+      },
       explorer = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
@@ -33,7 +85,7 @@ return {
       words = { enabled = true },
       styles = {
         notification = {
-          -- wo = { wrap = true } -- Wrap notifications
+          wo = { wrap = true } -- Wrap notifications
         }
       }
     },
@@ -140,7 +192,7 @@ return {
           _G.bt = function()
             Snacks.debug.backtrace()
           end
-          vim.print = _G.dd   -- Override print to use snacks for `:=` command
+          vim.print = _G.dd -- Override print to use snacks for `:=` command
 
           -- Create some toggle mappings
           Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
@@ -149,7 +201,7 @@ return {
           Snacks.toggle.diagnostics():map("<leader>ud")
           Snacks.toggle.line_number():map("<leader>ul")
           Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
-          "<leader>uc")
+            "<leader>uc")
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
           Snacks.toggle.inlay_hints():map("<leader>uh")
@@ -230,63 +282,10 @@ return {
   },
   { 'mrjones2014/smart-splits.nvim' },
   { 'RRethy/vim-illuminate' },
-  {
-    'goolord/alpha-nvim',
-    config = function()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.dashboard")
-      local function footer()
-        local version = vim.version()
-        local nvim_version_info = "neovim v" .. version.major .. "." .. version.minor .. "." .. version.patch
-        return nvim_version_info
-      end
-
-      local logo = {
-        [[=================     ===============     ===============   ========  ========]],
-        [[\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //]],
-        [[||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||]],
-        [[|| . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||]],
-        [[||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||]],
-        [[|| . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||]],
-        [[||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||]],
-        [[|| . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||]],
-        [[||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||]],
-        [[||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||]],
-        [[||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||]],
-        [[||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||]],
-        [[||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||]],
-        [[||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||]],
-        [[||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||]],
-        [[||.=='    _-'                                                     `' |  /==.||]],
-        [[=='    _-'                        N E O V I M                         \/   `==]],
-        [[\   _-'                                                                `-_   /]],
-        [[ `''                                                                      ``' ]],
-      }
-
-      dashboard.section.header.val = logo
-      dashboard.section.header.opts.hl = "Constant"
-
-      dashboard.section.buttons.val = {
-        dashboard.button("e", "  New File", ":enew<CR>"),
-        dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
-        dashboard.button("<Leader>u", "󰊳  Update", ":Lazy update<cr>"),
-        dashboard.button("<Leader>m", "󱊍  Mason", ":Mason<cr>"),
-        dashboard.button("<Leader>c", "󰋠  Check Health", ":checkhealth<cr>"),
-        dashboard.button("<Leader>i", "  Init", ":e ~/.config/nvim/init.lua<cr>"),
-        dashboard.button("<Leader>p", "  Lazy Plugins", ":e ~/.config/nvim/lua/plugins.lua<cr>"),
-        dashboard.button("q", "󰿅  Quit", ":qa<cr>")
-      }
-
-      dashboard.section.footer.val = footer()
-      dashboard.section.footer.opts.hl = "Constant"
-
-      alpha.setup(dashboard.opts)
-    end
-  },
   { 'levouh/tint.nvim' },
   {
     "sphamba/smear-cursor.nvim",
     opts = {}
   },
-  {'github/copilot.vim'}
+  { 'github/copilot.vim' }
 }
