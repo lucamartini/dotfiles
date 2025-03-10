@@ -235,10 +235,6 @@ return {
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
-    'stevearc/dressing.nvim',
-    opts = {},
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
@@ -285,7 +281,9 @@ return {
   { 'levouh/tint.nvim' },
   {
     "sphamba/smear-cursor.nvim",
-    opts = {}
+    opts = {
+      smear_between_neighbor_lines = false,
+    }
   },
   { 'github/copilot.vim' }
 }

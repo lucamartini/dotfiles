@@ -17,6 +17,12 @@ vim.opt.wildmode = "longest:full,full"
 
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
+vim.api.nvim_create_autocmd("WinNew", {
+  callback = function()
+    vim.cmd("wincmd w")
+  end
+})
+
 -- vim.g.python3_host_prog = '/Users/lmartini/.pyenv/shims/python3'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -75,3 +81,12 @@ require("mason-lspconfig").setup_handlers {
     --    require("rust-tools").setup {}
     -- end
 }
+
+require('illuminate').configure({
+  -- providers: provider used to get references in the buffer, ordered by priority
+  providers = {
+      'lsp',
+      'treesitter',
+  --  'regex',
+  },
+})
