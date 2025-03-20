@@ -28,6 +28,3 @@ echo -e "${BROWN}||.=='    _-'                                                  
 echo -e "${BROWN}=='    _-'                                                            \\/   \`==${RESET}"
 echo -e "${DARK_RED}\\   _-'                                                                \`-_   /${RESET}"
 echo -e "${DARK_RED} \`\`'                                                                      \`\`'${RESET}"
-
-# Reset terminal colors after execution
-echo -e "$RESET"
