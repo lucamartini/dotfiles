@@ -1,5 +1,7 @@
 # Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+
+~/misc/doom-neovim.sh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -130,7 +132,7 @@ setopt hist_reduce_blanks
 # bindings
 bindkey "^T" transpose-chars
 
-# remove duplicat entries from $PATH
+# remove duplicated entries from $PATH
 typeset -U PATH path
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
