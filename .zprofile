@@ -15,12 +15,6 @@ fi
 # ########################
 # PATH                   #
 # ########################
-# Amplify
-export PATH=~/.amplify/bin:$PATH
-# Android
-export PATH=~/Library/Android/sdk/platform-tools:$PATH
-export ANDROID_HOME=~/Library/Android/sdk
-export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
 
 # export PYENV_ROOT="$HOME/.pyenv"
