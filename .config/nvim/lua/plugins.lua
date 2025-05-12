@@ -239,10 +239,10 @@ return {
     build = ":TSUpdate"
   },
   {
-    "williamboman/mason.nvim"
+    "mason-org/mason.nvim"
   },
   { "neovim/nvim-lspconfig" },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "mason-org/mason-lspconfig.nvim" },
   { "mfussenegger/nvim-dap" },
   {
     "rcarriga/nvim-dap-ui",
