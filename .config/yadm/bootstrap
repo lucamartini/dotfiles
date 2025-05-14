@@ -13,13 +13,14 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 function clone_or_pull_repos() {
+  echo "repo ${green}$1${reset}"
   cd $REPO_DIR || return
   if [ -d "$1" ]; then
     cd "$1" || return
-    echo "upgrading ${green}$1${reset} from $2"
+    echo "pulling from $2"
     git pull
   else
-    echo "cloning ${yellow}$1${reset} from $2"
+    echo "cloning from $2"
     git clone --depth=1 "$2" $REPO_DIR/"$1"
   fi
 }
@@ -30,7 +31,7 @@ function pull_repos() {
   for dir in */; do
     local local_dir=${dir%*/}
     cd "$local_dir" || return
-    echo "upgrading ${green}$local_dir${reset}"
+    echo "pulling ${green}$local_dir${reset}"
     git pull
     cd ..
   done
@@ -53,7 +54,7 @@ repos=(
 for entry in "${repos[@]}"; do
   key="${entry%%:*}"
   value="${entry#*:}"
-  pull_repos "$key" "$value"
+  clone_or_pull_repos "$key" "$value"
 done
 
 # homebrew
