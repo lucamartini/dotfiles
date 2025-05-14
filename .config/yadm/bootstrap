@@ -12,7 +12,7 @@ if [ ! -d "$REPO_DIR" ]; then
   mkdir -p "$REPO_DIR"
 fi
 
-function pull_repos() {
+function clone_or_pull_repos() {
   cd $REPO_DIR || return
   if [ -d "$1" ]; then
     cd "$1" || return
@@ -22,6 +22,18 @@ function pull_repos() {
     echo "cloning ${yellow}$1${reset} from $2"
     git clone --depth=1 "$2" $REPO_DIR/"$1"
   fi
+}
+
+function pull_repos() {
+  echo -e "going to ${yellow}$1${reset}"
+  cd "$1" || return
+  for dir in */; do
+    local local_dir=${dir%*/}
+    cd "$local_dir" || return
+    echo "upgrading ${green}$local_dir${reset}"
+    git pull
+    cd ..
+  done
 }
 
 if ! command -v zsh >/dev/null 2>&1; then
