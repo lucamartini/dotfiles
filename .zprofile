@@ -10,14 +10,6 @@ elif [ "$system_type" = "Linux" ]; then
   fi
 fi
 
-# ########################
-# PATH                   #
-# ########################
-export FZF_DEFAULT_COMMAND='rg --hidden --files'
-
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
 [ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
 
 # set EDITOR
@@ -39,13 +31,4 @@ export LC_ALL=en_US.UTF-8
 # local class related config (e.g. work or home)
 [ -f ~/.local.sh ] && source ~/.local.sh
 
-# OS
-# export KERNEL_NAME=$(uname | tr '[:upper:]' '[:lower:]')
-# case $KERNEL_NAME in
-# 'linux') ;;
-# 'darwin') ;;
-# *) ;;
-# esac
-
 export PATH="$PATH:~/.local/bin"
-

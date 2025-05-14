@@ -25,7 +25,6 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   goenv                   # go environment (https://github.com/syndbg/goenv)
   # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
   # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
-  # node_version          # node.js version
   # go_version            # go version (https://golang.org)
   # rust_version          # rustc version (https://www.rust-lang.org)
   # dotnet_version        # .NET version (https://dotnet.microsoft.com)
@@ -82,7 +81,8 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # battery               # internal battery
   # wifi                  # wifi speed
   # example               # example user-defined segment (see prompt_example function below)
-  nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+  node_version          # node.js version
+  # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
   virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
   amplify
 )
@@ -201,10 +201,10 @@ typeset -g POWERLEVEL9K_PYENV_BACKGROUND=19
 typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=226
 typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=19
 typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=true
-typeset -g POWERLEVEL9K_NVM_FOREGROUND=15
-typeset -g POWERLEVEL9K_NVM_BACKGROUND=22
-typeset -g POWERLEVEL9K_NVM_PROMPT_ALWAYS_SHOW=true
-typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='󰎙'
+typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=15
+typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=22
+typeset -g POWERLEVEL9K_NODE_VERSION_PROMPT_ALWAYS_SHOW=true
+typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
 unset -m POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION
 
  

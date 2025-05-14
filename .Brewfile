@@ -14,6 +14,7 @@ brew "git-delta"
 brew "eza"
 brew "tree"
 brew "moreutils"
+brew "fnm"
 
 # fonts
 cask "font-fira-code-nerd-font"
