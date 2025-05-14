@@ -80,8 +80,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 zstyle ':omz:plugins:nvm' autoload yes
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
