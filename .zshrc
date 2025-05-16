@@ -11,6 +11,7 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# Aliases
 if type eza > /dev/null; then
   alias ls="eza --icons=auto"
   alias ll="eza --long --icons=auto"
@@ -27,42 +28,43 @@ alias pca="git add . && pc"
 
 alias tmux="~/.local/bin/tmux"
 
+# lfcd: Integrate lf file manager's cd function if available
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
     source "$LFCD"
 fi
-bindkey -s '^o' 'lfcd\n'
 
-# history settings
-unsetopt share_history
-unsetopt autocd
-setopt incappendhistory
-setopt hist_reduce_blanks
-setopt histignorealldups
+# Zsh options for history and behavior
+unsetopt share_history         # Don't share command history between sessions
+unsetopt autocd                # Require 'cd' to change directories
+setopt incappendhistory        # Immediately append history to the history file
+setopt hist_reduce_blanks      # Remove superfluous blanks from history items
+setopt histignorealldups       # Remove older duplicate entries from history
 
-# completions
+# Enable command completion system
 autoload -Uz compinit
 compinit
 
-# zsh-autosuggestions
+# Enable zsh-autosuggestions plugin
 source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# fast node version manager
+# Initialize fast Node.js version manager (fnm)
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines --shell zsh)"
 
-# fzf
+# Set default command for fzf to use ripgrep for file search
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
 FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 
-# zsh zsh-syntax-highlighting
+# Enable zsh-syntax-highlighting plugins (dracula and default)
 source ~/zsh/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
 source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# bindings
-bindkey -e
-bindkey '^[[Z' reverse-menu-complete
+# Key bindings
+bindkey -e                        # Use emacs key bindings
+bindkey '^[[Z' reverse-menu-complete  # Shift-Tab for reverse menu completion
+bindkey -s '^o' 'lfcd\n'              # Ctrl-o to launch lfcd
 
-# remove duplicated entries from $PATH
+# Remove duplicate entries from $PATH
 typeset -U PATH path
 
 # powerlevel10k
