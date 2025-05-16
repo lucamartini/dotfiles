@@ -38,6 +38,7 @@ unsetopt share_history
 unsetopt autocd
 setopt incappendhistory
 setopt hist_reduce_blanks
+setopt histignorealldups
 
 # bindings
 bindkey "^T" transpose-chars
@@ -63,7 +64,7 @@ compinit
 # remove duplicated entries from $PATH
 typeset -U PATH path
 
-# POWERLEVEL9K_MODE='nerdfont-complete'
+# powerlevel10k
 source ~/zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
