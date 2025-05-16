@@ -60,14 +60,6 @@ source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # bindings
 bindkey -e
-bindkey "^T" transpose-chars
-bindkey "^A" beginning-of-line
-bindkey "^U" backward-kill-line
-bindkey "^[B" backward-word
-bindkey "^W" backward-kill-word
-bindkey "^[F" forward-word
-bindkey "^[D" kill-word
-bindkey "^E" end-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 # remove duplicated entries from $PATH
