@@ -40,8 +40,9 @@ setopt incappendhistory
 setopt hist_reduce_blanks
 setopt histignorealldups
 
-# bindings
-bindkey "^T" transpose-chars
+# completions
+autoload -Uz compinit
+compinit
 
 # zsh-autosuggestions
 source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -51,15 +52,23 @@ eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines 
 
 # fzf
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
-source <(fzf --zsh)
+FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 
 # zsh zsh-syntax-highlighting
 source ~/zsh/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
 source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# completions
-autoload -Uz compinit
-compinit
+# bindings
+bindkey -e
+bindkey "^T" transpose-chars
+bindkey "^A" beginning-of-line
+bindkey "^U" backward-kill-line
+bindkey "^[B" backward-word
+bindkey "^W" backward-kill-word
+bindkey "^[F" forward-word
+bindkey "^[D" kill-word
+bindkey "^E" end-of-line
+bindkey '^[[Z' reverse-menu-complete
 
 # remove duplicated entries from $PATH
 typeset -U PATH path
