@@ -81,6 +81,12 @@ source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey -e                        # Use emacs key bindings
 bindkey '^[[Z' reverse-menu-complete  # Shift-Tab for reverse menu completion
 bindkey -s '^o' 'lfcd\n'              # Ctrl-o to launch lfcd
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[5~" up-line-or-search      # Page Up
+bindkey "^[[6~" down-line-or-search    # Page Down
+
 
 # Remove duplicate entries from $PATH
 typeset -U PATH path
