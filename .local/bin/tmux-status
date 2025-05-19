@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #    ██
 #   ░██
 #  ██████ ██████████  ██   ██ ██   ██
@@ -11,10 +11,11 @@
 #  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░▓ author       ▓ luca
 # ░▓ adapted from ▓ https://code.x-e.ro/dotfiles
+# ░▓ reviewed by   ▓ chatgpt
 # ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░░░░░░░
 #
-#----------------------------------------------------------// vars
+#----------------------------------------------------------// CONFIG
 FULL=━
 EMPTY=┄
 Black=0
@@ -27,22 +28,27 @@ Cyan=6
 White=7
 
 NETWORK_NAME=en0
-#--------------------------------------------------// progress bar
+OS="$(uname -s)"
+
+#--------------------------------------------------// PROGRESS BAR
 draw() {
-  perc=$1
-  size=$2
-  inc=$((perc * size / 125))
-  out=
-  for v in $(seq 0 $((size - 1))); do
-    [[ "$v" -le "$inc" ]] &&
-      out="${out}#[fg=$Black]${FULL}" ||
-      out="${out}#[fg=$Black]${EMPTY}"
+  local perc="$1"
+  local size="$2"
+  local inc=$((perc * size / 125))
+  local out=""
+  for ((v = 0; v < size; v++)); do
+    if ((v <= inc)); then
+      out+="#[fg=$Black]$FULL"
+    else
+      out+="#[fg=$Black]$EMPTY"
+    fi
   done
   printf "%s" "$out"
 }
-#-----------------------------------------------------// RAM
+
+#-----------------------------------------------------// RAM USAGE
 get_RAM() {
-  case $(uname -s) in
+  case $OS in
   Linux)
     usage="$(free -h | awk 'NR==2 {print $3}')"
     total="$(free -h | awk 'NR==2 {print $2}')"
@@ -69,7 +75,8 @@ get_RAM() {
     ;;
   esac
 }
-# normalize the percentage string to always have a length of 5
+
+#-----------------------------------------------------// CPU USAGE
 normalize_percent_len() {
   # the max length that the percent can reach, which happens for a two digit number with a decimal house: "99.9%"
   max_len=5
@@ -80,9 +87,9 @@ normalize_percent_len() {
   right_spaces=$((diff_len / 2))
   printf "%${left_spaces}s%s%${right_spaces}s" "" "$1%" "" "$(draw "$1" 10)"
 }
-#-----------------------------------------------------// CPU
+
 get_CPU() {
-  case $(uname -s) in
+  case $OS in
   Linux)
     percent=$(LC_NUMERIC=en_US.UTF-8 top -bn2 -d 0.01 | grep "Cpu(s)" | tail -1 | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
     normalize_percent_len "$percent"
@@ -96,82 +103,56 @@ get_CPU() {
     ;;
   esac
 }
-#------------------------------------------------------// network
+#------------------------------------------------------// NETWORK
 get_tmux_option() {
-  local option_name="$1"
-  local default_value="$2"
-  local option_value
-  option_value="$(tmux show-option -gqv "$option_name")"
-
-  if [ -z "$option_value" ]; then
-    echo -n "$default_value"
-  else
-    echo -n "$option_value"
-  fi
+  tmux show-option -gqv "$1" || echo "$2"
 }
 
 set_tmux_option() {
-  local option_name="$1"
-  local option_value="$2"
-  tmux set-option -gq "$option_name" "$option_value"
+  tmux set-option -gq "$1" "$2"
 }
 
 download_bytes() {
-  case $(uname -s) in
-  Linux)
-    cat "/sys/class/net/$NETWORK_NAME/statistics/rx_bytes"
-    ;;
-  Darwin)
-    netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $7}'
-    ;;
-  esac
+  [[ "$OS" == "Linux" ]] && cat "/sys/class/net/$NETWORK_NAME/statistics/rx_bytes"
+  [[ "$OS" == "Darwin" ]] && netstat -I "$NETWORK_NAME" -b | awk 'NR==2 {print $7}'
 }
 
 upload_bytes() {
-  case $(uname -s) in
-  Linux)
-    cat "/sys/class/net/$NETWORK_NAME/statistics/rx_bytes"
-    ;;
-  Darwin)
-    netstat -I "$NETWORK_NAME" -b | tail -n 1 | awk '{print $10}'
-    ;;
-  esac
+  [[ "$OS" == "Linux" ]] && cat "/sys/class/net/$NETWORK_NAME/statistics/tx_bytes"
+  [[ "$OS" == "Darwin" ]] && netstat -I "$NETWORK_NAME" -b | awk 'NR==2 {print $10}'
 }
+
 get_network() {
-  previous_download_b=$(get_tmux_option "@prev-down-b" 0)
-  current_download_b=$(download_bytes)
-  previous_upload_b=$(get_tmux_option "@prev-up-b" 0)
-  current_upload_b=$(upload_bytes)
+  local prev_down
+  prev_down=$(get_tmux_option "@prev-down-b" 0)
+  local prev_up
+  prev_up=$(get_tmux_option "@prev-up-b" 0)
+  local curr_down
+  curr_down=$(download_bytes)
+  local curr_up
+  curr_up=$(upload_bytes)
+  local interval
+  interval=$(get_tmux_option status-interval 5)
 
-  interval=$(get_tmux_option status-interval)
+  local delta_down=$((curr_down - prev_down))
+  local delta_up=$((curr_up - prev_up))
 
-  delta_download_b=$((current_download_b - previous_download_b))
-  download_bps=$((delta_download_b / interval))
-  delta_upload_b=$((current_upload_b - previous_upload_b))
-  upload_bps=$((delta_upload_b / interval))
+  local down_kbps=$((delta_down / interval / 1024))
+  local up_kbps=$((delta_up / interval / 1024))
 
-  download_kbps=$(echo "scale=0; $download_bps/1024" | bc)
-  upload_kbps=$(echo "scale=0; $upload_bps/1024" | bc)
+  set_tmux_option "@prev-down-b" "$curr_down"
+  set_tmux_option "@prev-up-b" "$curr_up"
 
-  printf "%6s kB/s ↓ %6s kB/s ↑" "$download_kbps" "$upload_kbps"
-  set_tmux_option "@prev-down-b" "$current_download_b"
-  set_tmux_option "@prev-up-b" "$current_upload_b"
-
+  printf "%6s kB/s ↓ %6s kB/s ↑" "$down_kbps" "$up_kbps"
 }
-#-------------------------------------------------------// compute
+
+#-------------------------------------------------------// STATUS SEGMENTS
 FRONT="#[bg=$Blue]#[fg=$Black]▓▒░"
 RAM=$(get_RAM)
 CPU=$(get_CPU)
-SYS=$({
-  printf "#[fg=%s]CPU %s " "$Black" "${CPU}"
-  printf "#[fg=%s]RAM %s " "$Black" "${RAM}"
-})
+SYS="#[fg=$Black]CPU $CPU #[fg=$Black]RAM $RAM"
 NETWORK=$(get_network)
-TIME=$({
-  printf "#[bg=%s]#[fg=%s]░▒▓#[fg=%s]#[bg=%s] %s %s #[bg=%s]#[fg=%s]▒░" \
-    "$Blue" "$Green" \
-    "$Black" "$Green" "$(date +'%H:%M')" \
-    "$(date +'%d/%m/%Y')" "$Black" "$Green"
-})
-#--------------------------------------------------------// render
+TIME="#[bg=$Blue]#[fg=$Green]░▒▓#[fg=$Black]#[bg=$Green] $(date +'%H:%M') $(date +'%d/%m/%Y') #[bg=$Black]#[fg=$Green]▒░"
+
+#--------------------------------------------------------// RENDER
 printf "%s %s %s %s" "$FRONT" "$SYS" "$NETWORK" "$TIME"
