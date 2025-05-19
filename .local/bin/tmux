@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# avoid nested tmux
-
-if [ -z $TMUX ]; then
+# Prevent nested tmux sessions
+if [ -z "$TMUX" ]; then
   exec tmux "$@"
 else
-  echo "do not start nested tmux"
+  printf "Already inside a tmux session. Nested tmux is not allowed.\n"
+  exit 1
 fi
