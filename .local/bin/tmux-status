@@ -11,7 +11,7 @@
 #  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░▓ author       ▓ luca
 # ░▓ adapted from ▓ https://code.x-e.ro/dotfiles
-# ░▓ reviewed by   ▓ chatgpt
+# ░▓ reviewed by  ▓ chatgpt
 # ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░░░░░░░
 #
@@ -122,37 +122,12 @@ upload_bytes() {
   [[ "$OS" == "Darwin" ]] && netstat -I "$NETWORK_NAME" -b | awk 'NR==2 {print $10}'
 }
 
-get_network() {
-  local prev_down
-  prev_down=$(get_tmux_option "@prev-down-b" 0)
-  local prev_up
-  prev_up=$(get_tmux_option "@prev-up-b" 0)
-  local curr_down
-  curr_down=$(download_bytes)
-  local curr_up
-  curr_up=$(upload_bytes)
-  local interval
-  interval=$(get_tmux_option status-interval 5)
-
-  local delta_down=$((curr_down - prev_down))
-  local delta_up=$((curr_up - prev_up))
-
-  local down_kbps=$((delta_down / interval / 1024))
-  local up_kbps=$((delta_up / interval / 1024))
-
-  set_tmux_option "@prev-down-b" "$curr_down"
-  set_tmux_option "@prev-up-b" "$curr_up"
-
-  printf "%6s kB/s ↓ %6s kB/s ↑" "$down_kbps" "$up_kbps"
-}
-
 #-------------------------------------------------------// STATUS SEGMENTS
 FRONT="#[bg=$Blue]#[fg=$Black]▓▒░"
 RAM=$(get_RAM)
 CPU=$(get_CPU)
 SYS="#[fg=$Black]CPU $CPU #[fg=$Black]RAM $RAM"
-NETWORK=$(get_network)
 TIME="#[bg=$Blue]#[fg=$Green]░▒▓#[fg=$Black]#[bg=$Green] $(date +'%H:%M') $(date +'%d/%m/%Y') #[bg=$Black]#[fg=$Green]▒░"
 
 #--------------------------------------------------------// RENDER
-printf "%s %s %s %s" "$FRONT" "$SYS" "$NETWORK" "$TIME"
+printf "%s %s %s" "$FRONT" "$SYS" "$TIME"

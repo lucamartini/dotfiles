@@ -40,6 +40,8 @@ alias tmux="$HOME/.local/bin/tmux"
 
 REPO_DIR="$ZSH_DIR/repos"
 
+[[ ! -f $ZSH_DIR/wezterm.sh ]] || source $ZSH_DIR/wezterm.sh
+
 # Enable zsh-autosuggestions plugin
 if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
   source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -78,6 +80,15 @@ typeset -U PATH path
 
 # powerlevel10k
 source $REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
