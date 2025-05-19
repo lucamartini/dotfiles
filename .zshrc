@@ -38,12 +38,6 @@ alias pc="pnpm run commit"
 alias pca="git add . && pc"
 alias tmux="$HOME/.local/bin/tmux"
 
-# lfcd: Integrate lf file manager's cd function if available
-LFCD="$HOME/.config/lf/lfcd.sh"
-if [ -f "$LFCD" ]; then
-  source "$LFCD"
-fi
-
 REPO_DIR="$ZSH_DIR/repos"
 
 # Enable zsh-autosuggestions plugin
@@ -57,8 +51,8 @@ if command -v fnm > /dev/null; then
 fi
 
 # Set default command for fzf to use ripgrep for file search
-export FZF_DEFAULT_COMMAND='rg --hidden --files'
 if command -v fzf > /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --hidden --files'
   FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 fi
 
@@ -73,7 +67,6 @@ fi
 # Key bindings
 bindkey -e                        # Use emacs key bindings
 bindkey '^[[Z' reverse-menu-complete  # Shift-Tab for reverse menu completion
-bindkey -s '^o' 'lfcd\n'              # Ctrl-o to launch lfcd
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
