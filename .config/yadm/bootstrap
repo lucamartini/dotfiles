@@ -7,7 +7,8 @@ green=$(tput setaf 2 bold)
 yellow=$(tput setaf 3 bold)
 reset=$(tput sgr0)
 
-REPO_DIR=~/.zsh
+ZSH_DIR=~/.zsh
+REPO_DIR=$ZSH_DIR/repos
 if [ ! -d "$REPO_DIR" ]; then
   mkdir -p "$REPO_DIR"
 fi

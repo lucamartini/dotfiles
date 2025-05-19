@@ -41,29 +41,11 @@ setopt incappendhistory        # Immediately append history to the history file
 setopt hist_reduce_blanks      # Remove superfluous blanks from history items
 setopt histignorealldups       # Remove older duplicate entries from history
 
-# Enable command completion system
-autoload -Uz compinit
-compinit
-# Enable menu selection with arrow keys
-zstyle ':completion:*' menu select
-# Group completions with headers
-zstyle ':completion:*' group-name ''
-# Enable descriptions for commands, options, etc.
-zstyle ':completion:*' format '%F{yellow}-- %d --%f'
-# Color completion results
-eval "$(gdircolors -b)"
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# Ignore duplicate entries in history-based completions
-zstyle ':completion:*' ignore-duplicates true
-# Cache completions for speed
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path ~/.zsh/cache
-# Allow completion for `cd` across directories
-zstyle ':completion:*' completer _complete _approximate
-# Add tags to help explain what you're completing
-zstyle ':completion:*' verbose yes
+ZSH_DIR=~/.zsh
+REPO_DIR=$ZSH_DIR/repos
 
-REPO_DIR=~/.zsh
+# completions
+source $ZSH_DIR/comp.zsh
 
 # Enable zsh-autosuggestions plugin
 source $REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
