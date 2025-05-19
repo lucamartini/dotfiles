@@ -1,7 +1,7 @@
-ZSH_DIR=~/.zsh
+ZSH_DIR="$HOME/.zsh"
 
 # splash screen
-$ZSH_DIR/doom-neovim.sh
+"$ZSH_DIR/doom-neovim.sh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -9,6 +9,18 @@ $ZSH_DIR/doom-neovim.sh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# completions (compinit and plugins should be loaded early)
+if [ -f "$ZSH_DIR/comp.zsh" ]; then
+  source "$ZSH_DIR/comp.zsh"
+fi
+
+# Zsh options for history and behavior
+unsetopt share_history         # Don't share command history between sessions
+unsetopt autocd                # Require 'cd' to change directories
+setopt incappendhistory        # Immediately append history to the history file
+setopt hist_reduce_blanks      # Remove superfluous blanks from history items
+setopt histignorealldups       # Remove older duplicate entries from history
 
 # Aliases
 if command -v eza > /dev/null; then
@@ -32,19 +44,7 @@ if [ -f "$LFCD" ]; then
   source "$LFCD"
 fi
 
-# Zsh options for history and behavior
-unsetopt share_history         # Don't share command history between sessions
-unsetopt autocd                # Require 'cd' to change directories
-setopt incappendhistory        # Immediately append history to the history file
-setopt hist_reduce_blanks      # Remove superfluous blanks from history items
-setopt histignorealldups       # Remove older duplicate entries from history
-
-# completions
-if [ -f "$ZSH_DIR/comp.zsh" ]; then
-  source "$ZSH_DIR/comp.zsh"
-fi
-
-REPO_DIR=$ZSH_DIR/repos
+REPO_DIR="$ZSH_DIR/repos"
 
 # Enable zsh-autosuggestions plugin
 if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then

@@ -21,8 +21,12 @@ fi
 zstyle ':completion:*' ignore-duplicates true
 
 # Cache completions for speed
+CACHE_DIR="$HOME/.zsh/cache"
+if [ ! -d "$CACHE_DIR" ]; then
+  mkdir -p "$CACHE_DIR"
+fi
 zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path ~/.zsh/cache
+zstyle ':completion::complete:*' cache-path "$CACHE_DIR"
 
 # Allow completion for `cd` across directories
 zstyle ':completion:*' completer _complete
@@ -33,7 +37,7 @@ zstyle ':completion:*' verbose yes
 # Case-insensitive matching for completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# Add trailing slash to directory completions
+# Do not add trailing slash
 zstyle ':completion:*' add-space false
 
 # Sort completion results by relevance
