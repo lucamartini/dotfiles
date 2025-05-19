@@ -25,13 +25,13 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path ~/.zsh/cache
 
 # Allow completion for `cd` across directories
-zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*' completer _complete
 
 # Add tags to help explain what you're completing
 zstyle ':completion:*' verbose yes
 
-# Case-insensitive and smart matching for completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|[._-]=* r:|=*'
+# Case-insensitive matching for completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Add trailing slash to directory completions
 zstyle ':completion:*' add-space false
