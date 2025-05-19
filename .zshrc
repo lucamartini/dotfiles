@@ -1,5 +1,7 @@
+ZSH_DIR=~/.zsh
+
 # splash screen
-~/misc/doom-neovim.sh
+$ZSH_DIR/doom-neovim.sh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -41,7 +43,6 @@ setopt incappendhistory        # Immediately append history to the history file
 setopt hist_reduce_blanks      # Remove superfluous blanks from history items
 setopt histignorealldups       # Remove older duplicate entries from history
 
-ZSH_DIR=~/.zsh
 REPO_DIR=$ZSH_DIR/repos
 
 # completions
