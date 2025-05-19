@@ -2,7 +2,6 @@
 
 # --- Environment Setup ---
 set -euo pipefail
-IFS=$'\n\t'
 
 system_type=$(uname -s)
 
