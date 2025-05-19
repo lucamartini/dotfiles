@@ -10,11 +10,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Aliases
-if type eza > /dev/null; then
+if command -v eza > /dev/null; then
   alias ls="eza --icons=auto"
   alias ll="eza --long --icons=auto"
 else
@@ -27,13 +24,12 @@ alias nc="npm run commit"
 alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
-
-alias tmux="~/.local/bin/tmux"
+alias tmux="$HOME/.local/bin/tmux"
 
 # lfcd: Integrate lf file manager's cd function if available
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
-    source "$LFCD"
+  source "$LFCD"
 fi
 
 # Zsh options for history and behavior
@@ -43,24 +39,36 @@ setopt incappendhistory        # Immediately append history to the history file
 setopt hist_reduce_blanks      # Remove superfluous blanks from history items
 setopt histignorealldups       # Remove older duplicate entries from history
 
+# completions
+if [ -f "$ZSH_DIR/comp.zsh" ]; then
+  source "$ZSH_DIR/comp.zsh"
+fi
+
 REPO_DIR=$ZSH_DIR/repos
 
-# completions
-source $ZSH_DIR/comp.zsh
-
 # Enable zsh-autosuggestions plugin
-source $REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
 # Initialize fast Node.js version manager (fnm)
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines --shell zsh)"
+if command -v fnm > /dev/null; then
+  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines --shell zsh)"
+fi
 
 # Set default command for fzf to use ripgrep for file search
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
-FZF_CTRL_T_COMMAND= source <(fzf --zsh)
+if command -v fzf > /dev/null; then
+  FZF_CTRL_T_COMMAND= source <(fzf --zsh)
+fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
-source $REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
-source $REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
+  source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
+fi
+if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 
 # Key bindings
 bindkey -e                        # Use emacs key bindings
@@ -71,7 +79,6 @@ bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[5~" up-line-or-search      # Page Up
 bindkey "^[[6~" down-line-or-search    # Page Down
-
 
 # Remove duplicate entries from $PATH
 typeset -U PATH path
