@@ -1,49 +1,74 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# --- Environment Setup ---
+set -euo pipefail
+IFS=$'\n\t'
 
 system_type=$(uname -s)
 
-red=$(tput setaf 1 bold)
-green=$(tput setaf 2 bold)
-yellow=$(tput setaf 3 bold)
+# Define colors
+red=$(
+  tput setaf 1
+  tput bold
+)
+green=$(
+  tput setaf 2
+  tput bold
+)
+yellow=$(
+  tput setaf 3
+  tput bold
+)
 reset=$(tput sgr0)
 
-ZSH_DIR=~/.zsh
-REPO_DIR=$ZSH_DIR/repos
-if [ ! -d "$REPO_DIR" ]; then
-  mkdir -p "$REPO_DIR"
-fi
+# Directory config
+ZSH_DIR="$HOME/.zsh"
+REPO_DIR="$ZSH_DIR/repos"
+mkdir -p "$REPO_DIR"
 
-function clone_or_pull_repos() {
-  echo "repo ${green}$1${reset}"
-  cd $REPO_DIR || return
-  if [ -d "$1" ]; then
-    cd "$1" || return
-    echo "pulling from $2"
-    git pull
+# --- Functions ---
+
+clone_or_pull_repos() {
+  local name="$1"
+  local url="$2"
+
+  echo -e "repo ${green}${name}${reset}"
+  cd "$REPO_DIR" || return
+
+  if [ -d "$name/.git" ]; then
+    echo "pulling from $url"
+    cd "$name" && git pull
   else
-    echo "cloning from $2"
-    git clone --depth=1 "$2" $REPO_DIR/"$1"
+    echo "cloning from $url"
+    git clone --depth=1 "$url" "$name"
   fi
 }
 
-function pull_repos() {
-  echo -e "going to ${yellow}$1${reset}"
-  cd "$1" || return
+pull_repos() {
+  local base_dir="$1"
+  echo -e "going to ${yellow}${base_dir}${reset}"
+
+  cd "$base_dir" || return
   for dir in */; do
-    local local_dir=${dir%*/}
-    cd "$local_dir" || return
-    echo "pulling ${green}$local_dir${reset}"
-    git pull
+    local dir_name="${dir%/}"
+    cd "$dir_name" || continue
+    echo -e "pulling ${green}${dir_name}${reset}"
+    git pull || echo "${red}Failed to pull $dir_name${reset}"
     cd ..
   done
 }
 
-if ! command -v zsh >/dev/null 2>&1; then
-  echo "${red}zsh shell not installed! Install it and switch to it with:${reset}"
-  echo "chsh -s \$(which zsh)"
-  echo "${red}and log out and in${reset}"
+# --- Ensure Zsh is Installed ---
+
+if ! command -v zsh >/dev/null; then
+  echo -e "${red}Zsh is not installed!${reset}"
+  echo -e "${yellow}Run the following to set it as your shell:${reset}"
+  echo "  chsh -s \$(which zsh)"
+  echo -e "${red}Then log out and back in.${reset}"
   exit 1
 fi
+
+# --- Zsh Plugin Repositories ---
 
 repos=(
   "dracula-syntax-highlighting:https://github.com/dracula/zsh-syntax-highlighting.git"
@@ -53,72 +78,72 @@ repos=(
 )
 
 for entry in "${repos[@]}"; do
-  key="${entry%%:*}"
-  value="${entry#*:}"
-  clone_or_pull_repos "$key" "$value"
+  IFS=':' read -r name url <<<"$entry"
+  clone_or_pull_repos "$name" "$url"
 done
 
-# homebrew
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Installing ${yellow}homebrew${reset}"
+# --- Homebrew ---
+
+if ! command -v brew >/dev/null; then
+  echo -e "Installing ${yellow}Homebrew${reset}..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-echo "Updating ${green}homebrew bundle${reset}"
+
+echo -e "Updating ${green}Homebrew bundle${reset}..."
 if [ "$system_type" = "Darwin" ]; then
-  if command -v /opt/homebrew/bin/brew &>/dev/null; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
+  [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ "$system_type" = "Linux" ]; then
-  if command -v /home/linuxbrew/.linuxbrew/bin/brew &>/dev/null; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
+  [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
 brew bundle install --global --verbose
 brew upgrade --greedy
 
-# fonts because no casks
+# --- Fonts (Linux Only) ---
+
 if [ "$system_type" = "Linux" ]; then
-  declare -a fonts=(
-    FiraCode
-  )
-  version='2.3.3'
   fonts_dir="${HOME}/.local/share/fonts"
-  if [[ ! -d "$fonts_dir" ]]; then
-    mkdir -p "$fonts_dir"
-  fi
+  mkdir -p "$fonts_dir"
+
+  version="2.3.3"
+  fonts=("FiraCode")
   run_fc_cache=0
+
   for font in "${fonts[@]}"; do
     bookmark="${fonts_dir}/${font}_${version}.touch"
-    if [ ! -f "${bookmark}" ]; then
+    if [ ! -f "$bookmark" ]; then
       zip_file="${font}.zip"
-      download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
-      echo "Downloading $download_url"
-      wget "$download_url"
+      url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
+      echo "Downloading $url"
+      wget "$url"
       unzip "$zip_file" -d "$fonts_dir"
       rm "$zip_file"
+      touch "$bookmark"
       run_fc_cache=1
-      touch "${bookmark}"
     fi
   done
-  if [ "$run_fc_cache" = 1 ]; then
+
+  if ((run_fc_cache)); then
     find "$fonts_dir" -name '*Windows Compatible*' -delete
     fc-cache -fv
   fi
 fi
 
-# tmux
-pull_repos ~/.tmux/plugins
+# --- Tmux Plugins ---
 
-# vim
-echo "upgrading ${green}vim${reset}"
+pull_repos "$HOME/.tmux/plugins"
+
+# --- Vim (Neovim) Lazy Sync ---
+
+echo -e "Upgrading ${green}vim plugins${reset}..."
 nvim --headless "+Lazy! sync" +qa
 
-# set OSX config
 if [ "$system_type" = "Darwin" ]; then
+  echo "Applying macOS defaults..."
   defaults write com.apple.dock autohide-delay -float 0.05
-  defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
-  defaults write com.apple.finder "AppleShowAllFiles" -bool "True"
-  defaults write com.apple.finder "ShowPathbar" -bool "true"
-  defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
-  defaults write -g NSWindowShouldDragOnGesture YES
+  defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+  defaults write com.apple.finder AppleShowAllFiles -bool true
+  defaults write com.apple.finder ShowPathbar -bool true
+  defaults write com.apple.finder _FXSortFoldersFirst -bool true
+  defaults write -g NSWindowShouldDragOnGesture -bool true
 fi
