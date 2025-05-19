@@ -1,35 +1,51 @@
-# Set PATH, MANPATH, etc., for Homebrew.
+# --------------------------
+# System-specific Homebrew setup
+# --------------------------
 system_type=$(uname -s)
-if [ "$system_type" = "Darwin" ]; then
-  if command -v /opt/homebrew/bin/brew &>/dev/null; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
-elif [ "$system_type" = "Linux" ]; then
-  if command -v /home/linuxbrew/.linuxbrew/bin/brew &>/dev/null; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
+
+if [[ $system_type == "Darwin" ]]; then
+  [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ $system_type == "Linux" ]]; then
+  [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-[ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
+# --------------------------
+# Python virtualenv autoload
+# --------------------------
+[[ -f "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate"
 
-# set EDITOR
-if [ -x "$(command -v nvim)" ]; then
-  alias vi="nvim"
-  alias vim="nvim"
-  export EDITOR=nvim
+# --------------------------
+# Default editor setup
+# --------------------------
+if command -v nvim >/dev/null; then
+  alias vi='nvim'
+  alias vim='nvim'
+  export EDITOR='nvim'
 else
-  alias vi="vim"
-  export EDITOR=vim
+  alias vi='vim'
+  export EDITOR='vim'
 fi
 
-# shell is UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export SAVEHIST=100000     # number of commands saved to file
+# --------------------------
+# Locale / UTF-8 environment
+# --------------------------
+typeset -gx LANG='en_US.UTF-8'
+typeset -gx LANGUAGE='en.UTF-8'
+typeset -gx LC_CTYPE='en_US.UTF-8'
+typeset -gx LC_ALL='en_US.UTF-8'
 
-# local class related config (e.g. work or home)
-[ -f ~/.local.sh ] && source ~/.local.sh
+# --------------------------
+# Zsh history configuration
+# --------------------------
+export SAVEHIST=100000 # number of commands saved to history file
 
-export PATH="$PATH:~/.local/bin"
+# --------------------------
+# Local override configuration
+# --------------------------
+[[ -f "$HOME/.local.sh" ]] && source "$HOME/.local.sh"
+
+# --------------------------
+# Add local bin directory to PATH
+# --------------------------
+local_bin="$HOME/.local/bin"
+[[ -d $local_bin ]] && export PATH="$PATH:$local_bin"
