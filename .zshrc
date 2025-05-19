@@ -66,6 +66,10 @@ if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Key bindings
 bindkey -e                        # Use emacs key bindings
 bindkey '^[[Z' reverse-menu-complete  # Shift-Tab for reverse menu completion
