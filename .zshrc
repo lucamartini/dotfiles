@@ -63,8 +63,10 @@ zstyle ':completion:*' completer _complete _approximate
 # Add tags to help explain what you're completing
 zstyle ':completion:*' verbose yes
 
+REPO_DIR=~/.zsh
+
 # Enable zsh-autosuggestions plugin
-source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Initialize fast Node.js version manager (fnm)
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines --shell zsh)"
@@ -74,8 +76,8 @@ export FZF_DEFAULT_COMMAND='rg --hidden --files'
 FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
-source ~/zsh/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
-source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
+source $REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Key bindings
 bindkey -e                        # Use emacs key bindings
@@ -92,7 +94,7 @@ bindkey "^[[6~" down-line-or-search    # Page Down
 typeset -U PATH path
 
 # powerlevel10k
-source ~/zsh/powerlevel10k/powerlevel10k.zsh-theme
+source $REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
