@@ -1,4 +1,3 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
 -- This will hold the configuration.
@@ -6,23 +5,48 @@ local config = wezterm.config_builder()
 
 config.window_background_image = '/Users/lmartini/misc/doom.jpg'
 config.window_background_image_hsb = {
-  -- Darken the background image by reducing it to 1/3rd
-  brightness = 0.1,
-
-  -- You can adjust the hue by scaling its value.
-  -- a multiplier of 1.0 leaves the value unchanged.
-  hue = 1,
-
-  -- You can adjust the saturation also.
-  saturation = 1.0,
+  brightness = 0.03,
 }
 config.enable_scroll_bar = true
 
--- This is where you actually apply your config choices
-
 -- config.color_scheme = 'Everforest Dark (Gogh)'
 -- config.color_scheme = 'Catppuccin Macchiato (Gogh)'
-config.color_scheme = 'Dracula (Official)'
+-- config.color_scheme = 'Dracula (Official)'
+config.color_scheme = 'Doom'
+
+config.color_schemes = {
+  ['Doom'] = {
+    foreground = '#f8d488',
+    background = '#1a0f0f',
+    cursor_bg = '#ff6f1a',
+    cursor_fg = '#1a0f0f',
+    cursor_border = '#ff6f1a',
+    selection_fg = '#5c2a2a',
+    selection_bg = '#f8d488',
+    ansi = {
+      "#1a0f0f", -- black
+      "#ff1e1e", -- red
+      "#748b4c", -- green
+      "#f8d488", -- yellow
+      "#3f5f7f", -- blue
+      "#d36cab", -- magenta
+      "#6b8a85", -- cyan
+      "#f1e7dc", -- white
+    },
+    brights = {
+      "#5c2a2a", -- bright black
+      "#ff4f4f", -- bright red
+      "#9fbf4b", -- bright green
+      "#ffe680", -- bright yellow
+      "#5f8abf", -- bright blue
+      "#f070c0", -- bright magenta
+      "#a0dbcd", -- bright cyan
+      "#ffffff", -- bright white
+    },
+    compose_cursor = '#5c2a2a',
+  }
+}
+
 
 config.font = wezterm.font('FiraCode Nerd Font')
 config.freetype_load_target = 'Light'
