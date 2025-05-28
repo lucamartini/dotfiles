@@ -285,5 +285,7 @@ return {
       smear_between_neighbor_lines = false,
     }
   },
-  { 'github/copilot.vim' }
+  { 'github/copilot.vim' },
+  { 'lambdalisue/vim-suda' }
 }
+
