@@ -233,16 +233,26 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { 'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make'
+  },
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate"
+    build = ":TSUpdate",
+    lazy = false
   },
   {
     "mason-org/mason.nvim"
   },
   { "neovim/nvim-lspconfig" },
-  { "mason-org/mason-lspconfig.nvim" },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      { "neovim/nvim-lspconfig" }
+    }
+  },
   { "mfussenegger/nvim-dap" },
   {
     "rcarriga/nvim-dap-ui",
@@ -270,11 +280,6 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  },
-  {
-    'mrjones2014/legendary.nvim',
-    priority = 10000,
-    lazy = false,
   },
   { 'mrjones2014/smart-splits.nvim' },
   { 'RRethy/vim-illuminate' },

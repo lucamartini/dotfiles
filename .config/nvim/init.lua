@@ -43,13 +43,6 @@ require('mini.icons').setup()
 
 require("tint").setup()
 
-require('legendary').setup({
-  extensions = {
-    -- to use default settings:
-    smart_splits = {},
-  },
-})
-
 require('telescope').setup {
   extensions = {
     fzf = {
@@ -57,7 +50,6 @@ require('telescope').setup {
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true,    -- override the file sorter
       case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-      -- the default case_mode is "smart_case"
     }
   }
 }
@@ -66,8 +58,6 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 
 require("mason").setup()
-require("mason-lspconfig").setup()
--- require("lspconfig").eslint.setup {}
 
 require('illuminate').configure({
   -- providers: provider used to get references in the buffer, ordered by priority
