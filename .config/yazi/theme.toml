@@ -1,2 +1,53 @@
-[flavor]
-dark = "dracula"
+# ~/.config/yazi/theme.toml
+
+[mgr]
+preview_hovered = { fg = "#ff6f1a" }
+preview_border = { fg = "#5c2a2a" }
+preview_title = { fg = "#f8d488" }
+selection = { fg = "#ff1e1e" }
+border = { fg = "#5c2a2a" }
+background = { bg = "#1a0f0f" }
+highlight = { fg = "#ffe680" }
+text = { fg = "#f1e7dc" }
+title = { fg = "#f8d488" }
+
+[status]
+normal = { fg = "#f1e7dc" }
+primary = { fg = "#ff6f1a" }
+error = { fg = "#ff1e1e" }
+warning = { fg = "#ffe680" }
+info = { fg = "#748b4c" }
+
+[progress]
+bar = { fg = "#ff6f1a" }
+bar_bg = { fg = "#5c2a2a" }
+percentage = { fg = "#f8d488" }
+
+[syntax]
+comment = { fg = "#6b8a85" }
+constant = { fg = "#ffe680" }
+string = { fg = "#ffe680" }
+keyword = { fg = "#9fbf4b" }
+function = { fg = "#ff6f1a" }
+variable = { fg = "#f1e7dc" }
+type = { fg = "#d36cab" }
+punctuation = { fg = "#f070c0" }
+operator = { fg = "#f8d488" }
+tag = { fg = "#d36cab" }
+attribute = { fg = "#ff6f1a" }
+number = { fg = "#ff4f4f" }
+
+[filetype]
+directory = { fg = "#ff6f1a" }
+symlink = { fg = "#f070c0" }
+executable = { fg = "#ff1e1e" }
+image = { fg = "#f8d488" }
+video = { fg = "#748b4c" }
+audio = { fg = "#6b8a85" }
+archive = { fg = "#ff4f4f" }
+document = { fg = "#ffe680" }
+mount = { fg = "#9fbf4b" }
+socket = { fg = "#d36cab" }
+fifo = { fg = "#f070c0" }
+device = { fg = "#5c2a2a" }
+special = { fg = "#f8d488" }
