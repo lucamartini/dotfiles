@@ -283,7 +283,11 @@ return {
   },
   { 'mrjones2014/smart-splits.nvim' },
   { 'RRethy/vim-illuminate' },
-  { 'levouh/tint.nvim' },
+  { 'tadaa/vimade',
+    opts = {
+      recipe = { 'default', { animate = true }}
+    }
+  },
   {
     "sphamba/smear-cursor.nvim",
     opts = {
