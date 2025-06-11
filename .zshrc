@@ -1,4 +1,6 @@
+# shellcheck disable=SC2148,SC1090,SC1091,SC2296,SC2034
 ZSH_DIR="$HOME/.zsh"
+REPO_DIR="$ZSH_DIR/repos"
 
 # splash screen
 "$ZSH_DIR/doom-neovim.sh"
@@ -36,11 +38,10 @@ alias nc="npm run commit"
 alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
-alias tmux="$HOME/.local/bin/tmux"
+alias tmux='$HOME/.local/bin/tmux'
 
-REPO_DIR="$ZSH_DIR/repos"
 
-[[ ! -f $ZSH_DIR/wezterm.sh ]] || source $ZSH_DIR/wezterm.sh
+[[ ! -f $ZSH_DIR/wezterm.sh ]] || source "$ZSH_DIR/wezterm.sh"
 
 # Enable zsh-autosuggestions plugin
 if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
@@ -55,14 +56,14 @@ fi
 # Set default command for fzf to use ripgrep for file search
 if command -v fzf > /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --hidden --files'
-  FZF_CTRL_T_COMMAND= source <(fzf --zsh)
+  FZF_CTRL_T_COMMAND=source <(fzf --zsh)
 fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
 # if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
 #   source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
 # fi
-source "$HOME/misc/zsh-syntax-highlighting.sh"
+source "$ZSH_DIR/zsh-syntax-highlighting.sh"
 if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
@@ -84,14 +85,15 @@ bindkey "^[[6~" down-line-or-search    # Page Down
 typeset -U PATH path
 
 # powerlevel10k
-source $REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme
+source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 
 # yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	local tmp
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || return
 	rm -f -- "$tmp"
 }
 
