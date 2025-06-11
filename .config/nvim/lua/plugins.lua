@@ -233,7 +233,8 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim',
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make'
   },
   {
@@ -283,9 +284,10 @@ return {
   },
   { 'mrjones2014/smart-splits.nvim' },
   { 'RRethy/vim-illuminate' },
-  { 'tadaa/vimade',
+  {
+    'tadaa/vimade',
     opts = {
-      recipe = { 'default', { animate = true }}
+      recipe = { 'default', { animate = true } }
     }
   },
   {
@@ -294,7 +296,6 @@ return {
       smear_between_neighbor_lines = false,
     }
   },
-  { 'github/copilot.vim' },
+  -- { 'github/copilot.vim' },
   { 'lambdalisue/vim-suda' }
 }
-
