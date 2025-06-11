@@ -10,9 +10,9 @@ config.window_background_image_hsb = {
 config.enable_scroll_bar = true
 
 -- config.color_scheme = 'Everforest Dark (Gogh)'
-config.color_scheme = 'Catppuccin Frappe'
+-- config.color_scheme = 'Catppuccin Frappe'
 -- config.color_scheme = 'Dracula (Official)'
--- config.color_scheme = 'Doom'
+config.color_scheme = 'Doom'
 
 config.color_schemes = {
   ['Doom'] = {

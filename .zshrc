@@ -1,4 +1,4 @@
-# shellcheck disable=SC2148,SC1090,SC1091,SC2296,SC2034
+# shellcheck disable=SC2148,SC1007,SC1090,SC1091,SC2296,SC2034
 ZSH_DIR="$HOME/.zsh"
 REPO_DIR="$ZSH_DIR/repos"
 
@@ -56,7 +56,7 @@ fi
 # Set default command for fzf to use ripgrep for file search
 if command -v fzf > /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --hidden --files'
-  FZF_CTRL_T_COMMAND=source <(fzf --zsh)
+  FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
