@@ -17,7 +17,7 @@ if [ -f "$ZSH_DIR/comp.zsh" ]; then
   source "$ZSH_DIR/comp.zsh"
 fi
 
-# Zsh options for history and behavior
+# Zsh options
 unsetopt share_history         # Don't share command history between sessions
 unsetopt autocd                # Require 'cd' to change directories
 setopt incappendhistory        # Immediately append history to the history file
@@ -80,6 +80,12 @@ bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[5~" up-line-or-search      # Page Up
 bindkey "^[[6~" down-line-or-search    # Page Down
+autoload -Uz up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search   # Up arrow search in history
+autoload -Uz down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search # Down arrow search in history
 
 # Remove duplicate entries from $PATH
 typeset -U PATH path
