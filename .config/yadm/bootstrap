@@ -137,6 +137,8 @@ pull_repos "$HOME/.tmux/plugins"
 echo -e "Upgrading ${green}vim plugins${reset}..."
 nvim --headless "+Lazy! sync" +qa
 
+# --- Macosx Defaults ---
+
 if [ "$system_type" = "Darwin" ]; then
   echo "Applying macOS defaults..."
   defaults write com.apple.dock autohide-delay -float 0.05

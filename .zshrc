@@ -17,14 +17,14 @@ if [ -f "$ZSH_DIR/comp.zsh" ]; then
   source "$ZSH_DIR/comp.zsh"
 fi
 
-# Zsh options
-unsetopt share_history         # Don't share command history between sessions
+# options
 unsetopt autocd                # Require 'cd' to change directories
+# history
+unsetopt share_history         # Don't share command history between sessions
 setopt incappendhistory        # Immediately append history to the history file
 setopt hist_reduce_blanks      # Remove superfluous blanks from history items
 setopt histignorealldups       # Remove older duplicate entries from history
-# Zsh history configuration
-export SAVEHIST=100000 # number of commands saved to history file
+export SAVEHIST=100000         # number of commands saved to history file
 
 # Aliases
 if command -v eza > /dev/null; then

@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2059
 
 # Define Doom-inspired colors using ANSI 256-color codes
 RED="\033[38;5;196m"
