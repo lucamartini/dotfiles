@@ -15,29 +15,11 @@ fi
 [[ -f "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate"
 
 # --------------------------
-# Default editor setup
-# --------------------------
-if command -v nvim >/dev/null; then
-  alias vi='nvim'
-  alias vim='nvim'
-  export EDITOR='nvim'
-else
-  alias vi='vim'
-  export EDITOR='vim'
-fi
-
-# --------------------------
 # Locale / UTF-8 environment
 # --------------------------
 typeset -gx LANG='en_US.UTF-8'
 typeset -gx LANGUAGE='en.UTF-8'
 typeset -gx LC_CTYPE='en_US.UTF-8'
-typeset -gx LC_ALL='en_US.UTF-8'
-
-# --------------------------
-# Zsh history configuration
-# --------------------------
-export SAVEHIST=100000 # number of commands saved to history file
 
 # --------------------------
 # Local override configuration

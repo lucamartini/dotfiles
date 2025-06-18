@@ -3,7 +3,7 @@ ZSH_DIR="$HOME/.zsh"
 REPO_DIR="$ZSH_DIR/repos"
 
 # splash screen
-"$ZSH_DIR/doom-neovim.sh"
+"$ZSH_DIR/welcome-doom.sh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -12,7 +12,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# completions (compinit and plugins should be loaded early)
+# completions
 if [ -f "$ZSH_DIR/comp.zsh" ]; then
   source "$ZSH_DIR/comp.zsh"
 fi
@@ -23,6 +23,8 @@ unsetopt autocd                # Require 'cd' to change directories
 setopt incappendhistory        # Immediately append history to the history file
 setopt hist_reduce_blanks      # Remove superfluous blanks from history items
 setopt histignorealldups       # Remove older duplicate entries from history
+# Zsh history configuration
+export SAVEHIST=100000 # number of commands saved to history file
 
 # Aliases
 if command -v eza > /dev/null; then
@@ -40,6 +42,14 @@ alias pc="pnpm run commit"
 alias pca="git add . && pc"
 alias tmux='$HOME/.local/bin/tmux'
 
+if command -v nvim >/dev/null; then
+  alias vi='nvim'
+  alias vim='nvim'
+  export EDITOR='nvim'
+else
+  alias vi='vim'
+  export EDITOR='vim'
+fi
 
 [[ ! -f $ZSH_DIR/wezterm.sh ]] || source "$ZSH_DIR/wezterm.sh"
 
