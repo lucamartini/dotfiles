@@ -209,7 +209,8 @@ typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
 typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=false
 unset -m POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION
 
- 
+unset -m POWERLEVEL9K_AWS_SHOW_ON_COMMAND
+
 function prompt_amplify() {
   PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null)
   ENV=$PROJECT_DIR/amplify/.config/local-env-info.json

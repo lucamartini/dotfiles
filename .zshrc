@@ -51,7 +51,9 @@ else
   export EDITOR='vim'
 fi
 
-[[ ! -f $ZSH_DIR/wezterm.sh ]] || source "$ZSH_DIR/wezterm.sh"
+if [ -f "$ZSH_DIR/wezterm.sh" ]; then
+  source "$ZSH_DIR/wezterm.sh"
+fi
 
 # Enable zsh-autosuggestions plugin
 if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
@@ -112,6 +114,8 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || return
 	rm -f -- "$tmp"
 }
+
+source "$ZSH_DIR/aws_export_profile.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

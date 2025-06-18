@@ -32,7 +32,7 @@ zstyle ':completion::complete:*' cache-path "$CACHE_DIR"
 zstyle ':completion:*' completer _complete
 
 # Add tags to help explain what you're completing
-zstyle ':completion:*' verbose yes
+# zstyle ':completion:*' verbose yes
 
 # Case-insensitive matching for completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
