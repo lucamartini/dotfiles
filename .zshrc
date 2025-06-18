@@ -84,6 +84,11 @@ if command -v zoxide > /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+# Enable AWS profile management
+if [ -f "$ZSH_DIR/aws_export_profile.zsh" ]; then
+  source "$ZSH_DIR/aws_export_profile.zsh"
+fi
+
 # Key bindings
 bindkey -e                        # Use emacs key bindings
 bindkey '^[[Z' reverse-menu-complete  # Shift-Tab for reverse menu completion
@@ -114,8 +119,6 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || return
 	rm -f -- "$tmp"
 }
-
-source "$ZSH_DIR/aws_export_profile.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
