@@ -72,10 +72,10 @@ if command -v fzf > /dev/null; then
 fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
-# if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
-#   source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
-# fi
-source "$ZSH_DIR/zsh-syntax-highlighting.sh"
+if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
+  source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
+fi
+# source "$ZSH_DIR/zsh-syntax-highlighting.sh"
 if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi

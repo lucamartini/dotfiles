@@ -83,7 +83,7 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # example               # example user-defined segment (see prompt_example function below)
   node_version          # node.js version
   # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-  virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+  # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
   amplify
 )
 
@@ -200,9 +200,8 @@ typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
 typeset -g POWERLEVEL9K_STATUS_ERROR=true
 typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
-typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=226
-typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=blue
-typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=true
+typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND="#ffde57"
+typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND="#4584b6"
 typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=green
 typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
