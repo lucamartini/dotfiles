@@ -2,7 +2,6 @@ local wezterm = require 'wezterm'
 
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
--- local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 resurrect.state_manager.set_encryption({
   enable = true,
@@ -222,7 +221,6 @@ for _, event in ipairs(resurrect_event_listeners) do
     wezterm.gui.gui_windows()[1]:toast_notification("Wezterm - resurrect", msg, nil, 4000)
   end)
 end
--- workspace_switcher.apply_to_config(config)
 
 -- and finally, return the configuration to wezterm
 return config
