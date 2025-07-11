@@ -45,9 +45,9 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   kubecontext             # current kubernetes context (https://kubernetes.io/)
   # terraform               # terraform workspace (https://www.terraform.io)
   # terraform_version     # terraform version (https://www.terraform.io)
-  aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+  # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
   # aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-  azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+  # azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
   gcloud                  # google cloud cli account and project (https://cloud.google.com/)
   google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
   # toolbox                 # toolbox name (https://github.com/containers/toolbox)
@@ -72,6 +72,8 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
   # per_directory_history   # Oh My Zsh per-directory-history local/global indicator
   # cpu_arch              # CPU architecture
+  node_env
+  aws_profile
   time                    # current time
   # =========================[ Line #2 ]=========================
   newline
@@ -206,16 +208,45 @@ typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=green
 typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
 typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=false
-unset -m POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION
 
-unset -m POWERLEVEL9K_AWS_SHOW_ON_COMMAND
-typeset -g POWERLEVEL9K_AWS_CONTENT_EXPANSION='${P9K_AWS_PROFILE//\%/%%}'
+function prompt_aws_profile() {
+  [[ -n $AWS_PROFILE ]] || return 1
+  p10k segment -b 1 -f 7 -i  -t "$AWS_PROFILE"
+}
+
+function prompt_node_env() {
+  [[ -n $NODE_ENV ]] || return 1
+  local bg icon fg
+  case $NODE_ENV in
+    development)
+      bg=green
+      fg=black
+      ;;
+    production)
+      bg=red
+      fg=white
+      ;;
+    test)
+      bg=yellow
+      fg=black
+      ;;
+    staging)
+      bg=yellow
+      fg=black
+      ;;
+    *)
+      bg=magenta
+      fg=white
+      ;;
+  esac
+  p10k segment -b "$bg" -f "$fg" -i 󰎙 -t "NODE_ENV=$NODE_ENV"
+}
 
 function prompt_amplify() {
   PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null)
-  ENV=$PROJECT_DIR/amplify/.config/local-env-info.json
-  if [ -f "$ENV" ]; then
-    output=$(grep <"$ENV" -o '"envName": "[^"]*' | grep -o '[^"]*$')
+  AMPLIFY_ENV=$PROJECT_DIR/amplify/.config/local-env-info.json
+  if [ -f "$AMPLIFY_ENV" ]; then
+    output=$(grep <"$AMPLIFY_ENV" -o '"envName": "[^"]*' | grep -o '[^"]*$')
     if [ "$output" = production ]; then
       local state=PRODUCTION
     else
@@ -223,7 +254,7 @@ function prompt_amplify() {
     fi
     p10k segment -s $state -f 3 -i '󰸏'  -t ${output}
   else
-    return
+    return 1
   fi
 }
 POWERLEVEL9K_AMPLIFY_PRODUCTION_BACKGROUND=red

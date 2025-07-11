@@ -1,21 +1,6 @@
 local wezterm = require 'wezterm'
 
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
-local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
-
-resurrect.state_manager.set_encryption({
-  enable = true,
-  method = "/opt/homebrew/bin/age",
-  private_key = "/Users/lmartini/misc/key.txt",
-  public_key = "age1v0theen093lj3muxdxtp857ehenr8v3wx70hzetc0cpsgp0u85wqanq3w5",
-})
-resurrect.state_manager.periodic_save({
-    interval_seconds = 300,
-    save_tabs = true,
-    save_windows = true,
-    save_workspaces = true,
-})
-resurrect.state_manager.set_max_nlines(5000)
 
 wezterm.plugin.update_all()
 
@@ -67,17 +52,10 @@ config.window_close_confirmation = 'NeverPrompt'
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.enable_kitty_keyboard = true
 
-config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 2000 }
-local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 local act = wezterm.action
 config.keys = {
-  {
-    key = 'w',
-    mods = 'CMD',
-    action = act.CloseCurrentTab { confirm = false },
-  },
-  -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
   {
     key = 'LeftArrow',
     mods = 'OPT',
@@ -114,6 +92,12 @@ config.keys = {
     mods = 'CTRL',
     action = act.DisableDefaultAssignment,
   },
+  -- Tabs
+  {
+    key = 'w',
+    mods = 'CMD',
+    action = act.CloseCurrentTab { confirm = false },
+  },
   {
     key = ',',
     mods = 'LEADER',
@@ -128,7 +112,7 @@ config.keys = {
       ),
     },
   },
-  -- Vertical split
+  -- Panes
   {
     key = 'v',
     mods = 'LEADER',
@@ -137,7 +121,6 @@ config.keys = {
       size = { Percent = 50 },
     },
   },
-  -- Horizontal split
   {
     key = 's',
     mods = 'LEADER',
@@ -146,81 +129,25 @@ config.keys = {
       size = { Percent = 50 },
     },
   },
-   {
+  {
     key = 'x',
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentPane { confirm = false },
   },
-
-    {
-    key = 'Space',
-    mods = 'LEADER|CTRL',
-    action = wezterm.action.SendKey { key = 'Space', mods = 'CTRL' },
-  },
-
-   {
-    key = "s",
-    mods = "CTRL|ALT",
-    action = wezterm.action_callback(function(win, pane)
-        resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
-      end),
-  },
-   {
-    key = "r",
-    mods = "CTRL|ALT",
-    action = wezterm.action_callback(function(win, pane)
-      resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
-        local type = string.match(id, "^([^/]+)") -- match before '/'
-        id = string.match(id, "([^/]+)$") -- match after '/'
-        id = string.match(id, "(.+)%..+$") -- remove file extention
-        local opts = {
-          close_open_tabs = true,
-          window = pane:window(),
-          on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-          relative = true,
-          restore_text = false,
-        }
-        if type == "workspace" then
-          local state = resurrect.state_manager.load_state(id, "workspace")
-          resurrect.workspace_state.restore_workspace(state, opts)
-        elseif type == "window" then
-          local state = resurrect.state_manager.load_state(id, "window")
-          resurrect.window_state.restore_window(pane:window(), state, opts)
-        elseif type == "tab" then
-          local state = resurrect.state_manager.load_state(id, "tab")
-          resurrect.tab_state.restore_tab(pane:tab(), state, opts)
-        end
-      end)
-    end),
-  },
 }
 
 smart_splits.apply_to_config(config, {
-  -- directional keys to use in order of: left, down, up, right
   direction_keys = { 'h', 'j', 'k', 'l' },
-
-  -- modifier keys to combine with direction_keys
   modifiers = {
-    move = 'CTRL', -- modifier to use for pane movement, e.g. CTRL+h to move left
-    resize = 'META', -- modifier to use for pane resize, e.g. META+h to resize to the left
+    move = 'CTRL',
+    resize = 'META',
   },
-  -- log level to use: info, warn, error
   log_level = 'info',
 })
 
-local resurrect_event_listeners = {
-  "resurrect.error",
-}
-for _, event in ipairs(resurrect_event_listeners) do
-  wezterm.on(event, function(...)
-    local args = { ... }
-    local msg = event
-    for _, v in ipairs(args) do
-      msg = msg .. " " .. tostring(v)
-    end
-    wezterm.gui.gui_windows()[1]:toast_notification("Wezterm - resurrect", msg, nil, 4000)
-  end)
-end
+wezterm.on('window-config-reloaded', function(window, pane)
+  window:toast_notification('wezterm', 'configuration reloaded!', nil, 4000)
+end)
 
 -- and finally, return the configuration to wezterm
 return config
