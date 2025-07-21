@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
-wezterm.plugin.update_all()
+-- wezterm.plugin.update_all()
 
 local config = wezterm.config_builder()
 
