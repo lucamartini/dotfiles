@@ -84,7 +84,7 @@ function K.set_key_bindings(config)
     {
       key = 'x',
       mods = 'LEADER',
-      action = wezterm.action.CloseCurrentPane { confirm = false },
+      action = action.CloseCurrentPane { confirm = false },
     },
   }
 
