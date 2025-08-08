@@ -1,5 +1,6 @@
 # shellcheck disable=SC2148,SC1007,SC1090,SC1091,SC2296,SC2034
 ZSH_DIR="$HOME/.zsh"
+WEZTERM_DIR="$HOME/.config/wezterm"
 REPO_DIR="$ZSH_DIR/repos"
 
 # splash screen
@@ -51,8 +52,8 @@ else
   export EDITOR='vim'
 fi
 
-if [ -f "$ZSH_DIR/wezterm.sh" ]; then
-  source "$ZSH_DIR/wezterm.sh"
+if [ -f "$WEZTERM_DIR/wezterm.sh" ]; then
+  source "$WEZTERM_DIR/wezterm.sh"
 fi
 
 # Enable zsh-autosuggestions plugin
