@@ -1,6 +1,8 @@
 aws_export_profile() {
 
     local config_file="${AWS_CONFIG_FILE:-$HOME/.aws/config}"
+    local credential_file="${AWS_CREDENTIAL_FILE:-$HOME/.aws/credentials}"
+
     local profiles
     profiles=(${(f)"$(grep '^\[profile ' $config_file | sed 's/^\[profile \(.*\)\]$/\1/')"})
     [[ -f $config_file && $(grep '^\[default\]' $config_file) ]] && profiles+=("default")
@@ -11,7 +13,6 @@ aws_export_profile() {
     fi
 
     local profile="$1"
-    local credential_file="$HOME/.aws/credentials"
     local section
     [[ "$profile" == "default" ]] && section="default" || section="profile $profile"
 
