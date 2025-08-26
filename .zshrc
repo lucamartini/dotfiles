@@ -113,16 +113,6 @@ typeset -U PATH path
 # powerlevel10k
 source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 
-# yazi
-function y() {
-	local tmp
-  tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || return
-	rm -f -- "$tmp"
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k_customizations.zsh ]] || source ~/.p10k_customizations.zsh

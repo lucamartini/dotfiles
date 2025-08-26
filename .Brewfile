@@ -16,7 +16,6 @@ brew "tree"
 brew "moreutils"
 brew "fnm"
 brew "coreutils"
-brew "yazi"
 
 # fonts
 cask "font-fira-code-nerd-font"
