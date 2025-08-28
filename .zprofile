@@ -10,11 +10,6 @@ elif [[ $system_type == "Linux" ]]; then
 fi
 
 # --------------------------
-# Python virtualenv autoload
-# --------------------------
-[[ -f "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate"
-
-# --------------------------
 # Locale / UTF-8 environment
 # --------------------------
 typeset -gx LANG='en_US.UTF-8'

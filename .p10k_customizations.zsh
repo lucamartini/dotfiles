@@ -21,7 +21,6 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   direnv                  # direnv status (https://direnv.net/)
   # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
   # anaconda                # conda environment (https://conda.io/)
-  # pyenv                   # python environment (https://github.com/pyenv/pyenv)
   # goenv                   # go environment (https://github.com/syndbg/goenv)
   # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
   # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
@@ -86,6 +85,7 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   node_version          # node.js version
   # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
   # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+  pyenv                   # python environment (https://github.com/pyenv/pyenv)
   amplify
 )
 
@@ -201,11 +201,10 @@ typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
 typeset -g POWERLEVEL9K_STATUS_ERROR=true
-typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
-typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND="#ffde57"
-typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND="#4584b6"
+typeset -g POWERLEVEL9K_PYENV_FOREGROUND="#ffde57"
+typeset -g POWERLEVEL9K_PYENV_BACKGROUND="#4584b6"
 typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND="#000000"
-typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=green
+typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND="#339933"
 typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
 typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=false
 
