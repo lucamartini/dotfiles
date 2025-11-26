@@ -17,6 +17,8 @@ vim.opt.wildmode = "longest:full,full"
 
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
+vim.g.python3_host_prog = '~/.pyenv/versions/nvim-env/bin/python'
+
 vim.api.nvim_create_autocmd("WinNew", {
   callback = function()
     vim.cmd("wincmd w")
