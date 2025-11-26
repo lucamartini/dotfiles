@@ -1,5 +1,6 @@
 return {
   {
+    -- Dracula color scheme for Neovim
     -- "neanias/everforest-nvim",
     "Mofiqul/dracula.nvim",
     lazy = false,
@@ -11,6 +12,7 @@ return {
     end,
   },
   {
+    -- Snacks.nvim: Modern UI/UX enhancements (dashboard, pickers, notifications, etc.)
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
@@ -213,6 +215,7 @@ return {
 
   },
   {
+    -- Lualine: Statusline plugin
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -224,29 +227,38 @@ return {
     end
   },
   {
+    -- Gitsigns: Git integration for showing signs in the gutter
     "lewis6991/gitsigns.nvim",
     config = function()
       require('gitsigns').setup()
     end
   },
   {
+    -- Telescope: Fuzzy finder and picker
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
+    -- Telescope FZF Native: FZF sorter for telescope (requires make)
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make'
   },
   {
+    -- Treesitter: Better syntax highlighting and code parsing
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false
   },
   {
+    -- Mason: Portable package manager for LSP, DAP, linters, and formatters
     "mason-org/mason.nvim"
   },
-  { "neovim/nvim-lspconfig" },
   {
+    -- LSPConfig: Quickstart configs for Neovim LSP
+    "neovim/nvim-lspconfig"
+  },
+  {
+    -- Mason LSPConfig: Bridge between mason.nvim and nvim-lspconfig
     "mason-org/mason-lspconfig.nvim",
     opts = {},
     dependencies = {
@@ -254,21 +266,33 @@ return {
       { "neovim/nvim-lspconfig" }
     }
   },
-  { "mfussenegger/nvim-dap" },
   {
+    -- nvim-dap: Debug Adapter Protocol client implementation
+    "mfussenegger/nvim-dap"
+  },
+  {
+    -- nvim-dap-ui: UI for nvim-dap
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio"
     }
   },
-  { 'mfussenegger/nvim-lint' },
-  { 'mhartington/formatter.nvim' },
   {
+    -- nvim-lint: Asynchronous linter plugin
+    'mfussenegger/nvim-lint'
+  },
+  {
+    -- formatter.nvim: Format code using external formatters
+    'mhartington/formatter.nvim'
+  },
+  {
+    -- mini.icons: Icon set for Neovim plugins
     'echasnovski/mini.icons',
     version = false
   },
   {
+    -- which-key: Displays available keybindings in popup
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {},
@@ -282,20 +306,89 @@ return {
       },
     },
   },
-  { 'mrjones2014/smart-splits.nvim' },
-  { 'RRethy/vim-illuminate' },
   {
+    -- smart-splits: Smart window splitting and resizing
+    'mrjones2014/smart-splits.nvim'
+  },
+  {
+    -- vim-illuminate: Highlight other uses of the word under the cursor
+    'RRethy/vim-illuminate'
+  },
+  {
+    -- vimade: Automatically dims inactive portions of the code
     'tadaa/vimade',
     opts = {
       recipe = { 'default', { animate = true } }
     }
   },
   {
+    -- smear-cursor: Adds a smear effect to the cursor
     "sphamba/smear-cursor.nvim",
     opts = {
       smear_between_neighbor_lines = false,
     }
   },
-  -- { 'github/copilot.vim' },
-  { 'lambdalisue/vim-suda' }
+  -- { 'github/copilot.vim' }, -- GitHub Copilot (commented out)
+  {
+    -- vim-suda: Read/write files with sudo
+    'lambdalisue/vim-suda'
+  },
+  {
+    -- nvim-highlight-colors: Highlight color codes in files
+    'brenoprata10/nvim-highlight-colors'
+  },
+  {
+    -- blink.cmp: A modern completion UI for nvim-cmp
+    'saghen/blink.cmp',
+    -- optional: provides snippets for the snippet source
+    dependencies = { 'rafamadriz/friendly-snippets' },
+
+    -- use a release tag to download pre-built binaries
+    version = '1.*',
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = { preset = 'enter' },
+
+      appearance = {
+        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = 'normal'
+      },
+
+      -- (Default) Only show the documentation popup when manually triggered
+      completion = { documentation = { auto_show = false } },
+
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+
+      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+      -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+      -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+      --
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    },
+    opts_extend = { "sources.default" }
+  }
 }

@@ -34,7 +34,7 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
   # rvm                     # ruby version from rvm (https://rvm.io)
   # fvm                     # flutter version management (https://github.com/leoafarias/fvm)
-  luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+  # luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
   # jenv                    # java version from jenv (https://github.com/jenv/jenv)
   # plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
   # perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
@@ -52,7 +52,7 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # toolbox                 # toolbox name (https://github.com/containers/toolbox)
   # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
   # ranger                  # ranger shell (https://github.com/ranger/ranger)
-  yazi                    # yazi shell (https://github.com/sxyazi/yazi)
+  # yazi                    # yazi shell (https://github.com/sxyazi/yazi)
   # nnn                     # nnn shell (https://github.com/jarun/nnn)
   # lf                      # lf shell (https://github.com/gokcehan/lf)
   # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
@@ -195,7 +195,7 @@ function my_git_formatter() {
 
 typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND="#FD6EA0"
-typeset -g POWERLEVEL9K_DIR_BACKGROUND="#FD9F75"
+#typeset -g POWERLEVEL9K_DIR_BACKGROUND="#FD9F75"
 typeset -g POWERLEVEL9K_DIR_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND="#000000"
 typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND="#000000"
