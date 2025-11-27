@@ -234,16 +234,6 @@ return {
     end
   },
   {
-    -- Telescope: Fuzzy finder and picker
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" }
-  },
-  {
-    -- Telescope FZF Native: FZF sorter for telescope (requires make)
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make'
-  },
-  {
     -- Treesitter: Better syntax highlighting and code parsing
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
