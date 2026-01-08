@@ -72,3 +72,29 @@ vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
 vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 
 require('nvim-highlight-colors').setup({})
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+    },
+  },
+})
+
+-- LSP keymaps (Neovim 0.10+ / 0.11)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+  callback = function(event)
+    local opts = { buffer = event.buf, silent = true }
+
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  end,
+})
+
