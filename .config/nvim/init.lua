@@ -28,12 +28,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
--- vim.api.nvim_create_autocmd("WinNew", {
---   callback = function()
---     vim.cmd("wincmd w")
---   end
--- })
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

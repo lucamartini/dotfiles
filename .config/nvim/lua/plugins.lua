@@ -298,23 +298,11 @@ return {
     'RRethy/vim-illuminate'
   },
   {
-    -- vimade: Automatically dims inactive portions of the code
-    'tadaa/vimade',
-    opts = {
-      recipe = { 'default', { animate = true } }
-    }
-  },
-  {
     -- smear-cursor: Adds a smear effect to the cursor
     "sphamba/smear-cursor.nvim",
     opts = {
       smear_between_neighbor_lines = false,
     }
-  },
-  -- { 'github/copilot.vim' }, -- GitHub Copilot (commented out)
-  {
-    -- vim-suda: Read/write files with sudo
-    'lambdalisue/vim-suda'
   },
   {
     -- nvim-highlight-colors: Highlight color codes in files
