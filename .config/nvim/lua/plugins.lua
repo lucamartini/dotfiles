@@ -2,7 +2,8 @@ return {
   {
     -- Dracula color scheme for Neovim
     -- "neanias/everforest-nvim",
-    "Mofiqul/dracula.nvim",
+    -- "Mofiqul/dracula.nvim",
+    "binhtran432k/dracula.nvim",
     lazy = false,
     priority = 1000,
     config = function()

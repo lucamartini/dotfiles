@@ -22,7 +22,8 @@ color_schemes.add_color_schemes(config)
 
 config.font = wezterm.font('FiraCode Nerd Font')
 config.freetype_load_target = 'Light'
-config.font_size = 12.0
+config.font_size = 14.0
+config.line_height = 1.2
 config.window_close_confirmation = 'NeverPrompt'
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.enable_kitty_keyboard = true

@@ -1,7 +1,6 @@
 -- hightlight cursor
 vim.opt.number = true
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
 
 -- mouse support
 vim.opt.mouse = "a"
