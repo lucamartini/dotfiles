@@ -212,7 +212,7 @@ typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=false
 
 function prompt_aws_profile() {
   [[ -n $AWS_PROFILE ]] || return 1
-  p10k segment -b 1 -f 7 -i  -t "$AWS_PROFILE"
+  p10k segment -b '#000000' -f '#ffffff' -i  -t "$AWS_PROFILE"
 }
 
 function prompt_node_env() {
