@@ -3,13 +3,14 @@ return {
     -- Dracula color scheme for Neovim
     -- "neanias/everforest-nvim",
     -- "Mofiqul/dracula.nvim",
-    "binhtran432k/dracula.nvim",
+    -- "binhtran432k/dracula.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       -- require("everforest").setup({background = "hard"})
       -- vim.cmd([[colorscheme everforest]])
-      vim.cmd([[colorscheme dracula]])
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
   {

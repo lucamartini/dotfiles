@@ -56,6 +56,10 @@ if [ -f "$WEZTERM_DIR/wezterm.sh" ]; then
   source "$WEZTERM_DIR/wezterm.sh"
 fi
 
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Enable zsh-autosuggestions plugin
 if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
   source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -76,14 +80,12 @@ fi
 if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
   source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
 fi
+# or custom "doom" syntax highlighting
 # source "$ZSH_DIR/zsh-syntax-highlighting.sh"
 if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
-if command -v zoxide > /dev/null; then
-  eval "$(zoxide init zsh)"
-fi
 
 # Enable AWS profile management
 if [ -f "$ZSH_DIR/aws_export_profile.zsh" ]; then
@@ -110,6 +112,11 @@ bindkey '^[[B' down-line-or-beginning-search # Down arrow search in history
 # Remove duplicate entries from $PATH
 typeset -U PATH path
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
+
 # powerlevel10k
 source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 
@@ -117,10 +124,6 @@ source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k_customizations.zsh ]] || source ~/.p10k_customizations.zsh
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
