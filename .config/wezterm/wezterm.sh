@@ -20,6 +20,12 @@ if [ -z "${BASH_VERSION-}" -a -z "${ZSH_NAME-}" ] ; then
   return 0
 fi
 
+# FIXME: this script causes issues in the `:terminal` in `neovim` inside `tmux`...
+# For the time being, disable the script when inside `neovim`.
+if [ -n "$NVIM" ]; then
+  WEZTERM_SHELL_SKIP_ALL=1
+fi
+
 if [ "${WEZTERM_SHELL_SKIP_ALL-}" = "1" ] ; then
   return 0
 fi
