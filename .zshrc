@@ -41,7 +41,6 @@ alias nc="npm run commit"
 alias nca="git add . && nc"
 alias pc="pnpm run commit"
 alias pca="git add . && pc"
-alias tmux='$HOME/.local/bin/tmux'
 
 if command -v nvim >/dev/null; then
   alias vi='nvim'
