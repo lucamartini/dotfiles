@@ -72,10 +72,10 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # per_directory_history   # Oh My Zsh per-directory-history local/global indicator
   # cpu_arch              # CPU architecture
   node_env
-  aws_profile
   time                    # current time
   # =========================[ Line #2 ]=========================
   newline
+  aws_profile
   # ip                    # ip address and bandwidth usage for a specified network interface
   # public_ip             # public IP address
   # proxy                 # system-wide http/https/ftp proxy
