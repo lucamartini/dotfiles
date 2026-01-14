@@ -25,6 +25,7 @@ local color_schemes = require("color_schemes")
 color_schemes.add_color_schemes(config)
 
 config.font = wezterm.font("FiraCode Nerd Font")
+config.harfbuzz_features = { "ss05", "ss03", "ss02", "cv19", "cv23", "cv22" }
 config.freetype_load_target = "Light"
 config.font_size = 12
 -- config.line_height = 1.1
