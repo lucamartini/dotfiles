@@ -6,6 +6,8 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local config = wezterm.config_builder()
 
+config.term = "wezterm"
+
 -- config.window_background_image = '/Users/lmartini/.config/wezterm/doom.jpg'
 -- config.window_background_image_hsb = {
 --   brightness = 0.03,
@@ -14,8 +16,8 @@ config.enable_scroll_bar = true
 
 -- config.color_scheme = 'Everforest Dark (Gogh)'
 -- config.color_scheme = 'Catppuccin Frappe'
--- config.color_scheme = 'Dracula (Official)'
-config.color_scheme = "Dracula"
+config.color_scheme = "Dracula (Official)"
+-- config.color_scheme = "Dracula"
 -- config.color_scheme = 'Doom'
 -- config.color_scheme = 'Catppuccin Mocha Vibrant'
 -- config.color_scheme = 'Tokyo Night'

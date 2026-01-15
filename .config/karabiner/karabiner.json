@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "Allow Home and End to navigate along a line.",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
