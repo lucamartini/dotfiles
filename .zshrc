@@ -104,9 +104,11 @@ bindkey "^[[6~" down-line-or-search    # Page Down
 autoload -Uz up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search   # Up arrow search in history
+bindkey '^P' up-line-or-beginning-search   # Up arrow search in history
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search # Down arrow search in history
+bindkey '^N' down-line-or-beginning-search # Down arrow search in history
 
 # Remove duplicate entries from $PATH
 typeset -U PATH path
