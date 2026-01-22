@@ -29,3 +29,4 @@ printf "${BROWN}||.=='    _-'                                                   
 printf "${BROWN}=='    _-'                                                            \\/   \`==${RESET}\n"
 printf "${DARK_RED}\\   _-'                                                                \`-_   /${RESET}\n"
 printf "${DARK_RED} \`\`'                                                                      \`\`'${RESET}\n"
+printf "\n"
