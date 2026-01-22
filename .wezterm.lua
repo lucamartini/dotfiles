@@ -3,7 +3,6 @@ local wezterm = require("wezterm")
 -- local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 -- wezterm.plugin.update_all()
 
-local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 config.term = "wezterm"
@@ -26,11 +25,10 @@ config.color_scheme = "Dracula (Official)"
 local color_schemes = require("color_schemes")
 color_schemes.add_color_schemes(config)
 
-config.font = wezterm.font("FiraCode Nerd Font")
+config.font = wezterm.font("FiraCode Nerd Font", { weight = "Medium" })
+-- config.font = wezterm.font("FiraCode Nerd Font")
 config.harfbuzz_features = { "ss05", "ss03", "ss02", "cv19", "cv23", "cv22" }
-config.freetype_load_target = "Light"
 config.font_size = 12
--- config.line_height = 1.1
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.enable_kitty_keyboard = true
@@ -38,13 +36,8 @@ config.enable_kitty_keyboard = true
 local key_bindings = require("key_bindings")
 key_bindings.set_key_bindings(config)
 
-wezterm.on("window-config-reloaded", function(window, pane)
+wezterm.on("window-config-reloaded", function(window)
 	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
-end)
-
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
 end)
 
 -- and finally, return the configuration to wezterm
