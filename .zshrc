@@ -4,7 +4,7 @@ WEZTERM_DIR="$HOME/.config/wezterm"
 REPO_DIR="$ZSH_DIR/repos"
 
 # splash screen
-"$ZSH_DIR/welcome-doom.sh"
+# "$ZSH_DIR/welcome-doom.sh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -76,11 +76,11 @@ if command -v fzf > /dev/null; then
 fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
-if [ -f "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh" ]; then
-  source "$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh"
+local SYNTAX_THEME=$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
+# local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-doom.sh # doom
+if [ -f "$SYNTAX_THEME" ]; then
+  source "$SYNTAX_THEME"
 fi
-# or custom "doom" syntax highlighting
-# source "$ZSH_DIR/zsh-syntax-highlighting.sh"
 if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi

@@ -14,13 +14,21 @@ local config = wezterm.config_builder()
 config.enable_scroll_bar = true
 
 -- config.color_scheme = 'Everforest Dark (Gogh)'
--- config.color_scheme = 'Catppuccin Frappe'
-config.color_scheme = "Dracula (Official)"
+config.color_scheme = "Catppuccin Frappe"
+-- config.color_scheme = "Catppuccin Latte"
+-- config.color_scheme = "rose-pine"
+-- config.color_scheme = "rose-pine-dawn"
+-- config.color_scheme = "rose-pine-moon"
+-- config.color_scheme = "Dracula (Official)"
 -- config.color_scheme = "Dracula"
 -- config.color_scheme = 'Doom'
 -- config.color_scheme = 'Catppuccin Mocha Vibrant'
 -- config.color_scheme = 'Tokyo Night'
 -- config.color_scheme = 'Terminal Basic'
+
+-- local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").main
+-- config.colors = theme.colors()
+-- config.window_frame = theme.window_frame()
 
 local color_schemes = require("color_schemes")
 color_schemes.add_color_schemes(config)
