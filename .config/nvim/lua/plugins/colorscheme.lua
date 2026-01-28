@@ -1,7 +1,6 @@
 return {
   { "dracula/vim" },
   { "rose-pine/neovim", name = "rose-pine" },
-  { "catppuccin/nvim", name = "catppuccin" },
   {
     "LazyVim/LazyVim",
     opts = {
