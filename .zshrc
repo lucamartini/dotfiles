@@ -74,13 +74,15 @@ if command -v fzf > /dev/null; then
 fi
 
 # Enable zsh-syntax-highlighting plugins
-local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/dracula.zsh
+local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/catppuccin-frappe.zsh
 source "$SYNTAX_THEME"
 source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-
 # Enable AWS profile management
 source "$ZSH_DIR/aws_export_profile.zsh"
+
+# Enable colortheme switcher
+source "$ZSH_DIR/switch_colortheme.zsh"
 
 # Key bindings
 bindkey -e                        # Use emacs key bindings
