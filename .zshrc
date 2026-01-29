@@ -60,9 +60,7 @@ if command -v zoxide > /dev/null; then
 fi
 
 # Enable zsh-autosuggestions plugin
-if [ -f "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-  source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
+source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Initialize fast Node.js version manager (fnm)
 if command -v fnm > /dev/null; then
@@ -75,21 +73,14 @@ if command -v fzf > /dev/null; then
   FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 fi
 
-# Enable zsh-syntax-highlighting plugins (dracula and default)
-local SYNTAX_THEME=$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
-# local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/doom.zsh # doom
-if [ -f "$SYNTAX_THEME" ]; then
-  source "$SYNTAX_THEME"
-fi
-if [ -f "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-fi
+# Enable zsh-syntax-highlighting plugins
+local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/dracula.zsh
+source "$SYNTAX_THEME"
+source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
 # Enable AWS profile management
-if [ -f "$ZSH_DIR/aws_export_profile.zsh" ]; then
-  source "$ZSH_DIR/aws_export_profile.zsh"
-fi
+source "$ZSH_DIR/aws_export_profile.zsh"
 
 # Key bindings
 bindkey -e                        # Use emacs key bindings
