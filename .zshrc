@@ -77,7 +77,7 @@ fi
 
 # Enable zsh-syntax-highlighting plugins (dracula and default)
 local SYNTAX_THEME=$REPO_DIR/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
-# local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-doom.sh # doom
+# local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/doom.zsh # doom
 if [ -f "$SYNTAX_THEME" ]; then
   source "$SYNTAX_THEME"
 fi
