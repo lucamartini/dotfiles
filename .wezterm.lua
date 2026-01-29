@@ -14,7 +14,7 @@ local config = wezterm.config_builder()
 config.enable_scroll_bar = true
 
 -- config.color_scheme = 'Everforest Dark (Gogh)'
-config.color_scheme = "Catppuccin Frappe"
+config.color_scheme = "catppuccin-frappe"
 -- config.color_scheme = "Catppuccin Latte"
 -- config.color_scheme = "rose-pine"
 -- config.color_scheme = "rose-pine-dawn"
