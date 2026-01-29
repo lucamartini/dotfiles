@@ -9,13 +9,63 @@ switch_colortheme() {
   case "$theme" in
     catppuccin-frappe)
       wez_theme="Catppuccin Frappe"
-      nvim_theme="catppuccin-frappe"
       zsh_syntax_theme="catppuccin-frappe"
+      nvim_theme="catppuccin-frappe"
+      ;;
+    catppuccin-latte)
+      wez_theme="Catppuccin Latte"
+      zsh_syntax_theme="catppuccin-latte"
+      nvim_theme="catppuccin-latte"
+      ;;
+    catppuccin-macchiato)
+      wez_theme="Catppuccin Macchiato"
+      zsh_syntax_theme="catppuccin-macchiato"
+      nvim_theme="catppuccin-macchiato"
+      ;;
+    catppuccin-mocha)
+      wez_theme="Catppuccin Mocha"
+      zsh_syntax_theme="catppuccin-mocha"
+      nvim_theme="catppuccin-mocha"
+      ;;
+    rose-pine)
+      wez_theme="rose-pine"
+      zsh_syntax_theme="rose-pine"
+      nvim_theme="rose-pine"
+      ;;
+    rose-pine-dawn)
+      wez_theme="rose-pine-dawn"
+      zsh_syntax_theme="rose-pine-dawn"
+      nvim_theme="rose-pine-dawn"
+      ;;
+    rose-pine-moon)
+      wez_theme="rose-pine-moon"
+      zsh_syntax_theme="rose-pine-moon"
+      nvim_theme="rose-pine-moon"
+      ;;
+    tokyonight)
+      wez_theme="Tokyo Night"
+      zsh_syntax_theme="tokyonight-night"
+      nvim_theme="tokyonight-night"
+      ;;
+    tokyonight-day)
+      wez_theme="Tokyo Night Day"
+      zsh_syntax_theme="tokyonight-day"
+      nvim_theme="tokyonight-day"
+      ;;
+    tokyonight-storm)
+      wez_theme="Tokyo Night Storm"
+      zsh_syntax_theme="tokyonight-storm"
+      nvim_theme="tokyonight-storm"
+      ;;
+    tokyonight-moon)
+      wez_theme="Tokyo Night Moon"
+      zsh_syntax_theme="tokyonight-moon"
+      nvim_theme="tokyonight-moon"
       ;;
     dracula)
       wez_theme="Dracula (Official)"
-      nvim_theme="dracula"
       zsh_syntax_theme="dracula"
+      nvim_theme="dracula"
       ;;
     *)
       # leave defaults

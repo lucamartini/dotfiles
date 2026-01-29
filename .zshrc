@@ -74,7 +74,7 @@ if command -v fzf > /dev/null; then
 fi
 
 # Enable zsh-syntax-highlighting plugins
-local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/catppuccin-frappe.zsh
+local SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/dracula.zsh
 source "$SYNTAX_THEME"
 source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
