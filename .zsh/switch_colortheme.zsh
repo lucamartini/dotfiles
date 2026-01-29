@@ -4,67 +4,67 @@ switch_colortheme() {
   # Per-app theme names (defaults to the input if not mapped)
   local wez_theme="$theme"
   local nvim_theme="$theme"
-  local zsh_syntax_theme="$theme"
+  local zsh_theme="$theme"
 
   case "$theme" in
     catppuccin-frappe)
       wez_theme="Catppuccin Frappe"
-      zsh_syntax_theme="catppuccin-frappe"
+      zsh_theme="catppuccin-frappe"
       nvim_theme="catppuccin-frappe"
       ;;
     catppuccin-latte)
       wez_theme="Catppuccin Latte"
-      zsh_syntax_theme="catppuccin-latte"
+      zsh_theme="catppuccin-latte"
       nvim_theme="catppuccin-latte"
       ;;
     catppuccin-macchiato)
       wez_theme="Catppuccin Macchiato"
-      zsh_syntax_theme="catppuccin-macchiato"
+      zsh_theme="catppuccin-macchiato"
       nvim_theme="catppuccin-macchiato"
       ;;
     catppuccin-mocha)
       wez_theme="Catppuccin Mocha"
-      zsh_syntax_theme="catppuccin-mocha"
+      zsh_theme="catppuccin-mocha"
       nvim_theme="catppuccin-mocha"
       ;;
     rose-pine)
       wez_theme="rose-pine"
-      zsh_syntax_theme="rose-pine"
+      zsh_theme="rose-pine"
       nvim_theme="rose-pine"
       ;;
     rose-pine-dawn)
       wez_theme="rose-pine-dawn"
-      zsh_syntax_theme="rose-pine-dawn"
+      zsh_theme="rose-pine-dawn"
       nvim_theme="rose-pine-dawn"
       ;;
     rose-pine-moon)
       wez_theme="rose-pine-moon"
-      zsh_syntax_theme="rose-pine-moon"
+      zsh_theme="rose-pine-moon"
       nvim_theme="rose-pine-moon"
       ;;
     tokyonight)
       wez_theme="Tokyo Night"
-      zsh_syntax_theme="tokyonight-night"
+      zsh_theme="tokyonight-night"
       nvim_theme="tokyonight-night"
       ;;
     tokyonight-day)
       wez_theme="Tokyo Night Day"
-      zsh_syntax_theme="tokyonight-day"
+      zsh_theme="tokyonight-day"
       nvim_theme="tokyonight-day"
       ;;
     tokyonight-storm)
       wez_theme="Tokyo Night Storm"
-      zsh_syntax_theme="tokyonight-storm"
+      zsh_theme="tokyonight-storm"
       nvim_theme="tokyonight-storm"
       ;;
     tokyonight-moon)
       wez_theme="Tokyo Night Moon"
-      zsh_syntax_theme="tokyonight-moon"
+      zsh_theme="tokyonight-moon"
       nvim_theme="tokyonight-moon"
       ;;
     dracula)
       wez_theme="Dracula (Official)"
-      zsh_syntax_theme="dracula"
+      zsh_theme="dracula"
       nvim_theme="dracula"
       ;;
     *)
@@ -90,7 +90,9 @@ switch_colortheme() {
   }
 
   sed_inplace "$ZSHRC" \
-    -E "s|(zsh-syntax-highlighting-colorschemes/)[^/]+|\\1${zsh_syntax_theme}.zsh|"
+    -E "s|(zsh-syntax-highlighting-colorschemes/)[^/]+|\\1${zsh_theme}.zsh|"
+  sed_inplace "$ZSHRC" \
+    -E 's|(p10k-colorschemes/)[^/"]+(\.zsh")|\1'"${zsh_theme}"'\2|'
 
   sed_inplace "$WEZTERM" \
     -E "s|^([[:space:]]*config\.color_scheme[[:space:]]*=[[:space:]]*\")[^\"]+|\\1${wez_theme}|" 
