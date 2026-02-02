@@ -1,0 +1,10 @@
+typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#82aaff'   # blue
+typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND='#222436'   # bg
+
+typeset -g POWERLEVEL9K_DIR_BACKGROUND='#82aaff'       # blue
+typeset -g POWERLEVEL9K_DIR_FOREGROUND='#222436'       # bg
+typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#86e1fc'  # cyan
+typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#ffc777'     # yellow
+
+typeset -g POWERLEVEL9K_TIME_FOREGROUND='#c8d3f5'      # fg
+typeset -g POWERLEVEL9K_TIME_BACKGROUND='#222436'      # bg

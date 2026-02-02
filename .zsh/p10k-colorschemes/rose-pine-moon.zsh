@@ -1,0 +1,10 @@
+typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#c4a7e7'   # iris
+typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND='#232136'   # base
+
+typeset -g POWERLEVEL9K_DIR_BACKGROUND='#c4a7e7'       # iris
+typeset -g POWERLEVEL9K_DIR_FOREGROUND='#232136'       # base
+typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#9ccfd8'  # foam
+typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#f6c177'     # gold
+
+typeset -g POWERLEVEL9K_TIME_FOREGROUND='#9ccfd8'      # foam
+typeset -g POWERLEVEL9K_TIME_BACKGROUND='#232136'      # base

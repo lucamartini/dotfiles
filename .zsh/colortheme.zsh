@@ -1,4 +1,4 @@
-switch_colortheme() {
+colortheme() {
   local theme="${1:?usage: $0 <theme>}"
 
   # Per-app theme names (defaults to the input if not mapped)
@@ -77,28 +77,12 @@ switch_colortheme() {
   local WEZTERM="${WEZTERM:-$HOME/.wezterm.lua}"
   local NVIM_COLORS="${NVIM_COLORS:-$HOME/.config/nvim/lua/plugins/colorscheme.lua}"
 
-  # Pick a sed that supports -i (macOS vs GNU)
-  sed_inplace() {
-    local file="$1"; shift
-    if sed --version >/dev/null 2>&1; then
-      # GNU sed
-      sed -i "$@" "$file"
-    else
-      # BSD/macOS sed
-      sed -i '' "$@" "$file"
-    fi
-  }
+  sed -i '' -E "s|(zsh-syntax-highlighting-colorschemes/)[^/]+|\\1${zsh_theme}.zsh|" "$ZSHRC"
+  sed -i '' -E "s|p10k-colorschemes/[^\"]+\.zsh|p10k-colorschemes/${zsh_theme}.zsh|g" "$ZSHRC"
+  
+  sed -i '' -E "s|^([[:space:]]*config\.color_scheme[[:space:]]*=[[:space:]]*\")[^\"]+|\\1${wez_theme}|" "$WEZTERM"
 
-  sed_inplace "$ZSHRC" \
-    -E "s|(zsh-syntax-highlighting-colorschemes/)[^/]+|\\1${zsh_theme}.zsh|"
-  sed_inplace "$ZSHRC" \
-    -E 's|(p10k-colorschemes/)[^/"]+(\.zsh")|\1'"${zsh_theme}"'\2|'
-
-  sed_inplace "$WEZTERM" \
-    -E "s|^([[:space:]]*config\.color_scheme[[:space:]]*=[[:space:]]*\")[^\"]+|\\1${wez_theme}|" 
-
-  sed_inplace "$NVIM_COLORS" \
-    -E "s|^([[:space:]]*colorscheme[[:space:]]*=[[:space:]]*\")[^\"]+(\"[[:space:]]*,)|\\1${nvim_theme}\\2|"
+  sed -i '' -E "s|^([[:space:]]*colorscheme[[:space:]]*=[[:space:]]*\")[^\"]+(\"[[:space:]]*,)|\\1${nvim_theme}\\2|" "$NVIM_COLORS"
 
   print "✅ Theme switched to: ${theme}"
   print "   - ${ZSHRC}"
@@ -107,14 +91,14 @@ switch_colortheme() {
 }
 
 # Completion
-_switch_colortheme() {
+_colortheme() {
   emulate -L zsh
   setopt extendedglob
 
   local def line key
   local -a candidates
 
-  def="$(functions switch_colortheme 2>/dev/null)" || return 1
+  def="$(functions colortheme 2>/dev/null)" || return 1
   [[ -n "$def" ]] || return 1
 
   for line in ${(f)def}; do
@@ -131,4 +115,4 @@ _switch_colortheme() {
 
   _describe -t themes 'themes' candidates
 }
-compdef _switch_colortheme switch_colortheme
+compdef _colortheme colortheme
