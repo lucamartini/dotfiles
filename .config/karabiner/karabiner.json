@@ -37,6 +37,7 @@
                     },
                     {
                         "description": "Change right_shift + left_shift to caps_lock",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -74,6 +75,10 @@
                 {
                     "from": { "key_code": "caps_lock" },
                     "to": [{ "key_code": "escape" }]
+                },
+                {
+                    "from": { "key_code": "escape" },
+                    "to": [{ "key_code": "caps_lock" }]
                 }
             ],
             "virtual_hid_keyboard": {

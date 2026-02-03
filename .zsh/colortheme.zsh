@@ -79,10 +79,13 @@ colortheme() {
 
   sed -i '' -E "s|(zsh-syntax-highlighting-colorschemes/)[^/]+|\\1${zsh_theme}.zsh|" "$ZSHRC"
   sed -i '' -E "s|p10k-colorschemes/[^\"]+\.zsh|p10k-colorschemes/${zsh_theme}.zsh|g" "$ZSHRC"
-  
+  # source "$ZSHRC"
+
   sed -i '' -E "s|^([[:space:]]*config\.color_scheme[[:space:]]*=[[:space:]]*\")[^\"]+|\\1${wez_theme}|" "$WEZTERM"
 
   sed -i '' -E "s|^([[:space:]]*colorscheme[[:space:]]*=[[:space:]]*\")[^\"]+(\"[[:space:]]*,)|\\1${nvim_theme}\\2|" "$NVIM_COLORS"
+
+
 
   print "✅ Theme switched to: ${theme}"
   print "   - ${ZSHRC}"

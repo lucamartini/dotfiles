@@ -74,7 +74,7 @@ if command -v fzf > /dev/null; then
 fi
 
 # Enable zsh-syntax-highlighting plugins
-SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/catppuccin-frappe.zsh
+SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/dracula.zsh
 source "$SYNTAX_THEME"
 source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
@@ -117,7 +117,7 @@ source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k_customizations.zsh ]] || source ~/.p10k_customizations.zsh
-[[ ! -f "$ZSH_DIR/p10k-colorschemes/catppuccin-frappe.zsh" ]] || source "$ZSH_DIR/p10k-colorschemes/catppuccin-frappe.zsh"
+[[ ! -f "$ZSH_DIR/p10k-colorschemes/dracula.zsh" ]] || source "$ZSH_DIR/p10k-colorschemes/dracula.zsh"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
