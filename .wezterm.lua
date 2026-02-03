@@ -14,7 +14,7 @@ local config = wezterm.config_builder()
 config.enable_scroll_bar = true
 
 -- config.color_scheme = 'Everforest Dark (Gogh)'
-config.color_scheme = "Tokyo Night Storm"
+config.color_scheme = "Dracula (Official)"
 -- config.color_scheme = "Catppuccin Latte"
 -- config.color_scheme = "rose-pine"
 -- config.color_scheme = "rose-pine-dawn"
@@ -33,9 +33,16 @@ config.color_scheme = "Tokyo Night Storm"
 local color_schemes = require("color_schemes")
 color_schemes.add_color_schemes(config)
 
-config.font = wezterm.font("FiraCode Nerd Font", { weight = "Medium" })
--- config.font = wezterm.font("FiraCode Nerd Font")
-config.harfbuzz_features = { "ss05", "ss03", "ss02", "cv19", "cv23", "cv22" }
+config.font = wezterm.font({
+	family = "FiraCode Nerd Font",
+	weight = "Medium",
+	harfbuzz_features = { "ss05", "ss03", "ss02", "cv19", "cv23", "cv22" },
+})
+-- config.font = wezterm.font({
+-- 	family = "IosevkaTerm Nerd Font",
+-- 	weight = "Medium",
+-- 	harfbuzz_features = { "calt=0", "JSPT=1" },
+-- })
 config.font_size = 12
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
