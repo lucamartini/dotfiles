@@ -82,20 +82,18 @@ done
 
 # --- Homebrew ---
 
-if ! command -v brew >/dev/null; then
-  echo -e "Installing ${yellow}Homebrew${reset}..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
-echo -e "Updating ${green}Homebrew bundle${reset}..."
 if [ "$system_type" = "Darwin" ]; then
-  [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ "$system_type" = "Linux" ]; then
-  [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+  if ! command -v brew >/dev/null; then
+    echo -e "Installing ${yellow}Homebrew${reset}..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 
-brew bundle install --global --verbose
-brew upgrade --greedy
+  echo -e "Updating ${green}Homebrew bundle${reset}..."
+  [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  brew bundle install --global --verbose
+  brew upgrade --greedy
+fi
 
 # --- Fonts (Linux Only) ---
 
@@ -103,7 +101,7 @@ if [ "$system_type" = "Linux" ]; then
   fonts_dir="${HOME}/.local/share/fonts"
   mkdir -p "$fonts_dir"
 
-  version="2.3.3"
+  version="3.4.0"
   fonts=("FiraCode")
   run_fc_cache=0
 
