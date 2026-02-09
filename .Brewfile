@@ -2,6 +2,7 @@ tap "homebrew/bundle"
 
 # shell
 brew "btop"
+brew "bandwhich"
 brew "coreutils"
 brew "curl"
 brew "eza"
