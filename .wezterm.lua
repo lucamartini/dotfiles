@@ -51,9 +51,4 @@ config.enable_kitty_keyboard = true
 local key_bindings = require("key_bindings")
 key_bindings.set_key_bindings(config)
 
-wezterm.on("window-config-reloaded", function(window)
-	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
-end)
-
--- and finally, return the configuration to wezterm
 return config
