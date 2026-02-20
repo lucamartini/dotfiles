@@ -133,6 +133,7 @@ pull_repos "$HOME/.tmux/plugins"
 
 echo -e "Upgrading ${green}vim plugins${reset}..."
 nvim --headless "+Lazy! sync" +qa
+echo ''
 
 # --- Macosx Defaults ---
 
