@@ -1,4 +1,4 @@
-colortheme() {
+color-theme() {
   local theme="${1:?usage: $0 <theme>}"
 
   # Per-app theme names (defaults to the input if not mapped)
@@ -94,14 +94,14 @@ colortheme() {
 }
 
 # Completion
-_colortheme() {
+_color-theme() {
   emulate -L zsh
   setopt extendedglob
 
   local def line key
   local -a candidates
 
-  def="$(functions colortheme 2>/dev/null)" || return 1
+  def="$(functions color-theme 2>/dev/null)" || return 1
   [[ -n "$def" ]] || return 1
 
   for line in ${(f)def}; do
@@ -118,4 +118,4 @@ _colortheme() {
 
   _describe -t themes 'themes' candidates
 }
-compdef _colortheme colortheme
+compdef _color-theme color-theme

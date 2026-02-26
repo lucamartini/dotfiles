@@ -63,8 +63,14 @@ fi
 source "$REPO_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Initialize fast Node.js version manager (fnm)
+cleanup_fnm() {
+  if [[ -n "$FNM_MULTISHELL_PATH" && -d "$FNM_MULTISHELL_PATH" ]]; then
+    rm -rf "$FNM_MULTISHELL_PATH"
+  fi
+}
 if command -v fnm > /dev/null; then
   eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines --shell zsh)"
+  trap cleanup_fnm EXIT
 fi
 
 # Set default command for fzf to use ripgrep for file search
@@ -72,6 +78,9 @@ if command -v fzf > /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --hidden --files'
   FZF_CTRL_T_COMMAND= source <(fzf --zsh)
 fi
+
+# python uv
+source "$ZSH_DIR/auto-venv.zsh"
 
 # Enable zsh-syntax-highlighting plugins
 SYNTAX_THEME=$ZSH_DIR/zsh-syntax-highlighting-colorschemes/dracula.zsh
@@ -81,8 +90,8 @@ source "$REPO_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Enable AWS profile management
 source "$ZSH_DIR/aws_export_profile.zsh"
 
-# Enable colortheme switcher
-source "$ZSH_DIR/colortheme.zsh"
+# Enable color-theme switcher
+source "$ZSH_DIR/color-theme.zsh"
 
 # Key bindings
 bindkey -e                        # Use emacs key bindings
@@ -103,14 +112,6 @@ zle -N down-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search # Down arrow search in history
 bindkey '^N' down-line-or-beginning-search # Down arrow search in history
 
-# Remove duplicate entries from $PATH
-typeset -U PATH path
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
-
 # powerlevel10k
 source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 
@@ -118,6 +119,9 @@ source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k_customizations.zsh ]] || source ~/.p10k_customizations.zsh
 [[ ! -f "$ZSH_DIR/p10k-colorschemes/dracula.zsh" ]] || source "$ZSH_DIR/p10k-colorschemes/dracula.zsh"
+
+# Remove duplicate entries from $PATH
+typeset -U PATH path
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi

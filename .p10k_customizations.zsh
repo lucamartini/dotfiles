@@ -71,7 +71,7 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
   # per_directory_history   # Oh My Zsh per-directory-history local/global indicator
   # cpu_arch              # CPU architecture
-  node_env
+  # node_env
   time                    # current time
   # =========================[ Line #2 ]=========================
   newline
@@ -84,8 +84,8 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # example               # example user-defined segment (see prompt_example function below)
   node_version          # node.js version
   # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-  # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-  pyenv                   # python environment (https://github.com/pyenv/pyenv)
+  virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+  # pyenv                   # python environment (https://github.com/pyenv/pyenv)
   amplify
 )
 
@@ -245,8 +245,8 @@ POWERLEVEL9K_AMPLIFY_PRODUCTION_BACKGROUND=red
 POWERLEVEL9K_AMPLIFY_BACKGROUND=16
 
 typeset -g POWERLEVEL9K_STATUS_ERROR=true
-typeset -g POWERLEVEL9K_PYENV_FOREGROUND="#ffde57"
-typeset -g POWERLEVEL9K_PYENV_BACKGROUND="#4584b6"
+typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND="#ffde57"
+typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND="#4584b6"
 typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND="#ffffff"
 typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND="#339933"
 typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰎙'
