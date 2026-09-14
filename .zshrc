@@ -112,6 +112,15 @@ zle -N down-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search # Down arrow search in history
 bindkey '^N' down-line-or-beginning-search # Down arrow search in history
 
+# yazi
+function y() {
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
+}
+
 # powerlevel10k
 source "$REPO_DIR/powerlevel10k/powerlevel10k.zsh-theme"
 
@@ -128,3 +137,6 @@ if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/home
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
+
+# crm-mysql completion (managed by uv run init)
+source '/Users/lmartini/nwg/etl/crm-mysql/scripts/db-tools.sh'
